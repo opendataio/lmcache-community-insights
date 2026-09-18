@@ -99,8 +99,39 @@ def graphql(query: str, variables: dict[str, Any] | None = None) -> dict[str, An
     return payload["data"]
 
 
+def parse_next_link(link_header: str | None) -> str | None:
+    if not link_header:
+        return None
+    for part in link_header.split(","):
+        section = part.strip()
+        if 'rel="next"' not in section:
+            continue
+        start = section.find("<")
+        end = section.find(">")
+        if start >= 0 and end > start:
+            return section[start + 1 : end]
+    return None
+
+
+def paginated_rest(path: str, *, accept: str = "application/vnd.github+json", name: str) -> list[Any]:
+    items: list[Any] = []
+    next_url: str | None = path
+    while next_url:
+        payload, headers = request_json(next_url, accept=accept)
+        if not isinstance(payload, list):
+            raise TypeError(f"Expected list response for {next_url}, got {type(payload)!r}")
+        items.extend(payload)
+        log_progress(name, len(items))
+        next_url = parse_next_link(headers.get("link"))
+    return items
+
+
 def log_progress(name: str, count: int) -> None:
     print(f"Fetched {count} {name}...", file=sys.stderr, flush=True)
+
+
+def should_try_rest_fallback(error: Exception) -> bool:
+    return "Resource not accessible by integration" in str(error) or '"type": "FORBIDDEN"' in str(error)
 
 
 def get_repository_summary() -> dict[str, int]:
@@ -192,18 +223,34 @@ def get_star_dates(tz: ZoneInfo) -> list[date]:
     """
     dates: list[date] = []
     cursor: str | None = None
-    while True:
-        data = graphql(query, {"owner": OWNER, "name": REPO, "cursor": cursor})
-        connection = data["repository"]["stargazers"]
-        dates.extend(
-            parsed.date()
-            for edge in connection["edges"]
-            if (parsed := parse_github_datetime(edge.get("starredAt"), tz)) is not None
-        )
-        log_progress("stargazers", len(dates))
-        if not connection["pageInfo"]["hasNextPage"]:
-            return dates
-        cursor = connection["pageInfo"]["endCursor"]
+    try:
+        while True:
+            data = graphql(query, {"owner": OWNER, "name": REPO, "cursor": cursor})
+            connection = data["repository"]["stargazers"]
+            dates.extend(
+                parsed.date()
+                for edge in connection["edges"]
+                if (parsed := parse_github_datetime(edge.get("starredAt"), tz)) is not None
+            )
+            log_progress("stargazers", len(dates))
+            if not connection["pageInfo"]["hasNextPage"]:
+                return dates
+            cursor = connection["pageInfo"]["endCursor"]
+    except RuntimeError as error:
+        if not should_try_rest_fallback(error):
+            raise
+        print("GraphQL stargazers unavailable; falling back to REST.", file=sys.stderr, flush=True)
+
+    stars = paginated_rest(
+        f"/repos/{TARGET_REPOSITORY}/stargazers?per_page=100",
+        accept="application/vnd.github.star+json",
+        name="stargazers",
+    )
+    return [
+        parsed.date()
+        for item in stars
+        if (parsed := parse_github_datetime(item.get("starred_at"), tz)) is not None
+    ]
 
 
 def get_fork_dates(tz: ZoneInfo) -> list[date]:
@@ -228,18 +275,45 @@ def get_fork_dates(tz: ZoneInfo) -> list[date]:
     """
     dates: list[date] = []
     cursor: str | None = None
-    while True:
-        data = graphql(query, {"owner": OWNER, "name": REPO, "cursor": cursor})
-        connection = data["repository"]["forks"]
-        dates.extend(
-            parsed.date()
-            for item in connection["nodes"]
-            if (parsed := parse_github_datetime(item.get("createdAt"), tz)) is not None
-        )
-        log_progress("forks", len(dates))
-        if not connection["pageInfo"]["hasNextPage"]:
-            return dates
-        cursor = connection["pageInfo"]["endCursor"]
+    try:
+        while True:
+            data = graphql(query, {"owner": OWNER, "name": REPO, "cursor": cursor})
+            connection = data["repository"]["forks"]
+            dates.extend(
+                parsed.date()
+                for item in connection["nodes"]
+                if (parsed := parse_github_datetime(item.get("createdAt"), tz)) is not None
+            )
+            log_progress("forks", len(dates))
+            if not connection["pageInfo"]["hasNextPage"]:
+                return dates
+            cursor = connection["pageInfo"]["endCursor"]
+    except RuntimeError as error:
+        if not should_try_rest_fallback(error):
+            raise
+        print("GraphQL forks unavailable; falling back to REST.", file=sys.stderr, flush=True)
+
+    forks = paginated_rest(f"/repos/{TARGET_REPOSITORY}/forks?per_page=100&sort=newest", name="forks")
+    return [
+        parsed.date()
+        for item in forks
+        if (parsed := parse_github_datetime(item.get("created_at"), tz)) is not None
+    ]
+
+
+def rest_commit_author_key(commit: dict[str, Any]) -> str | None:
+    author = commit.get("author") or {}
+    if author.get("login"):
+        return f"login:{author['login']}"
+
+    raw_author = commit.get("commit", {}).get("author", {})
+    email = (raw_author.get("email") or "").strip().lower()
+    name = (raw_author.get("name") or "").strip().lower()
+    if email:
+        return f"email:{email}"
+    if name:
+        return f"name:{name}"
+    return None
 
 
 def get_contributor_first_dates(tz: ZoneInfo) -> dict[str, date]:
@@ -274,34 +348,51 @@ def get_contributor_first_dates(tz: ZoneInfo) -> dict[str, date]:
     first_seen: dict[str, date] = {}
     cursor: str | None = None
     fetched_commits = 0
-    while True:
-        data = graphql(query, {"owner": OWNER, "name": REPO, "cursor": cursor})
-        target = data["repository"]["defaultBranchRef"]["target"]
-        history = target["history"]
-        for commit in history["nodes"]:
-            author = commit.get("author") or {}
-            user = author.get("user") or {}
-            key = None
-            if user.get("login"):
-                key = f"login:{user['login']}"
-            elif author.get("email"):
-                key = f"email:{author['email'].strip().lower()}"
-            elif author.get("name"):
-                key = f"name:{author['name'].strip().lower()}"
+    try:
+        while True:
+            data = graphql(query, {"owner": OWNER, "name": REPO, "cursor": cursor})
+            target = data["repository"]["defaultBranchRef"]["target"]
+            history = target["history"]
+            for commit in history["nodes"]:
+                author = commit.get("author") or {}
+                user = author.get("user") or {}
+                key = None
+                if user.get("login"):
+                    key = f"login:{user['login']}"
+                elif author.get("email"):
+                    key = f"email:{author['email'].strip().lower()}"
+                elif author.get("name"):
+                    key = f"name:{author['name'].strip().lower()}"
 
-            commit_dt = parse_github_datetime(commit.get("committedDate"), tz)
-            if key is None or commit_dt is None:
-                continue
-            commit_day = commit_dt.date()
-            current = first_seen.get(key)
-            if current is None or commit_day < current:
-                first_seen[key] = commit_day
+                commit_dt = parse_github_datetime(commit.get("committedDate"), tz)
+                if key is None or commit_dt is None:
+                    continue
+                commit_day = commit_dt.date()
+                current = first_seen.get(key)
+                if current is None or commit_day < current:
+                    first_seen[key] = commit_day
 
-        fetched_commits += len(history["nodes"])
-        log_progress("commits", fetched_commits)
-        if not history["pageInfo"]["hasNextPage"]:
-            return first_seen
-        cursor = history["pageInfo"]["endCursor"]
+            fetched_commits += len(history["nodes"])
+            log_progress("commits", fetched_commits)
+            if not history["pageInfo"]["hasNextPage"]:
+                return first_seen
+            cursor = history["pageInfo"]["endCursor"]
+    except RuntimeError as error:
+        if not should_try_rest_fallback(error):
+            raise
+        print("GraphQL commit history unavailable; falling back to REST.", file=sys.stderr, flush=True)
+
+    commits = paginated_rest(f"/repos/{TARGET_REPOSITORY}/commits?per_page=100", name="commits")
+    for commit in commits:
+        key = rest_commit_author_key(commit)
+        raw_date = commit.get("commit", {}).get("author", {}).get("date")
+        commit_dt = parse_github_datetime(raw_date, tz)
+        if key is None or commit_dt is None:
+            continue
+        commit_day = commit_dt.date()
+        current = first_seen.get(key)
+        if current is None or commit_day < current:
+            first_seen[key] = commit_day
     return first_seen
 
 
