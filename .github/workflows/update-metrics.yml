@@ -1,0 +1,47 @@
+name: Update LMCache metrics
+
+on:
+  schedule:
+    - cron: "17 18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Pages
+        uses: actions/configure-pages@v5
+
+      - name: Fetch LMCache metrics
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          TARGET_REPOSITORY: LMCache/LMCache
+          METRIC_TIMEZONE: Asia/Shanghai
+          OUTPUT_PATH: site/data/lmcache-metrics.json
+        run: python3 scripts/fetch_lmcache_metrics.py
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+

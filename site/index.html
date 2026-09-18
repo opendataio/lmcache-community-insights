@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LMCache Community Insights</title>
+    <link rel="stylesheet" href="assets/styles.css?v=20260918">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">LMCache / LMCache</p>
+          <h1>Community Insights</h1>
+        </div>
+        <div class="updated" id="updatedAt">Loading data...</div>
+      </header>
+
+      <section class="kpis" aria-label="Current metrics">
+        <article>
+          <span>Open PRs</span>
+          <strong id="currentOpenPrs">0</strong>
+        </article>
+        <article>
+          <span>Stars</span>
+          <strong id="currentStars">0</strong>
+        </article>
+        <article>
+          <span>Forks</span>
+          <strong id="currentForks">0</strong>
+          <small id="forkCoverage"></small>
+        </article>
+        <article>
+          <span>Contributors</span>
+          <strong id="currentContributors">0</strong>
+        </article>
+      </section>
+
+      <section class="toolbar" aria-label="Chart controls">
+        <label>
+          Window
+          <select id="windowSelect">
+            <option value="30">30 days</option>
+            <option value="90" selected>90 days</option>
+            <option value="180">180 days</option>
+            <option value="365">1 year</option>
+            <option value="all">All</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="grid">
+        <article class="panel panel-wide">
+          <div class="panel-head">
+            <h2>Pull Request Flow</h2>
+            <p>Daily opened, closed, merged, and net change.</p>
+          </div>
+          <canvas id="prFlowChart" height="280"></canvas>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <h2>Open PR Backlog</h2>
+            <p>End-of-day open PR count.</p>
+          </div>
+          <canvas id="openBacklogChart" height="260"></canvas>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <h2>Stars and Forks</h2>
+          <p>Cumulative current stars and timestamp-visible forks.</p>
+          </div>
+          <canvas id="starForkChart" height="260"></canvas>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <h2>Contributors</h2>
+            <p>Estimated cumulative default-branch commit authors.</p>
+          </div>
+          <canvas id="contributorsChart" height="260"></canvas>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <h2>Latest 14 Days</h2>
+            <p>Recent PR movement.</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Opened</th>
+                  <th>Closed</th>
+                  <th>Merged</th>
+                  <th>Net</th>
+                  <th>Open EOD</th>
+                </tr>
+              </thead>
+              <tbody id="recentTable"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section class="notes">
+        <h2>Metric Notes</h2>
+        <p>
+          PR backlog is reconstructed from PR creation and close timestamps.
+          Stars and forks use currently existing GitHub objects, so removed stars
+          and deleted forks are not visible in the public API history. Some fork
+          records can be counted by GitHub's repository summary without being
+          available in the timestamped fork connection. The contributor curve is
+          based on default-branch commit authors first seen in commit history.
+        </p>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
+    <script src="assets/app.js?v=20260918"></script>
+  </body>
+</html>
