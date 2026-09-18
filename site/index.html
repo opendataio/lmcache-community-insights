@@ -4,13 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LMCache Community Insights</title>
-    <link rel="stylesheet" href="assets/styles.css?v=20260918">
+    <script>
+      (() => {
+        const stored = localStorage.getItem("lmcacheInsightsTheme");
+        document.documentElement.dataset.theme = stored === "light" ? "light" : "dark";
+      })();
+    </script>
+    <link rel="stylesheet" href="assets/styles.css?v=20260918-2">
   </head>
   <body>
     <main class="shell">
       <header class="topbar">
         <div>
-          <p class="eyebrow">LMCache / LMCache</p>
+          <a class="eyebrow" href="https://github.com/LMCache/LMCache">LMCache / LMCache</a>
           <h1>Community Insights</h1>
         </div>
         <div class="updated" id="updatedAt">Loading data...</div>
@@ -18,21 +24,32 @@
 
       <section class="kpis" aria-label="Current metrics">
         <article>
-          <span>Open PRs</span>
-          <strong id="currentOpenPrs">0</strong>
+          <a class="kpi-card" id="netPrLink" href="#pr-flow">
+            <span>Net PR Change</span>
+            <strong id="currentNetPr">0</strong>
+            <small class="delta" id="netPrDelta">vs yesterday</small>
+          </a>
         </article>
         <article>
-          <span>Stars</span>
-          <strong id="currentStars">0</strong>
+          <a class="kpi-card" id="openPrLink" href="https://github.com/LMCache/LMCache/pulls?q=is%3Apr+is%3Aopen">
+            <span>Open PRs</span>
+            <strong id="currentOpenPrs">0</strong>
+            <small class="delta" id="openPrDelta">vs yesterday</small>
+          </a>
         </article>
         <article>
-          <span>Forks</span>
-          <strong id="currentForks">0</strong>
-          <small id="forkCoverage"></small>
+          <a class="kpi-card" id="mergedPrLink" href="https://github.com/LMCache/LMCache/pulls?q=is%3Apr+is%3Amerged">
+            <span>Merged Today</span>
+            <strong id="currentMergedPrs">0</strong>
+            <small class="delta" id="mergedPrDelta">vs yesterday</small>
+          </a>
         </article>
         <article>
-          <span>Contributors</span>
-          <strong id="currentContributors">0</strong>
+          <a class="kpi-card" id="closedPrLink" href="https://github.com/LMCache/LMCache/pulls?q=is%3Apr+is%3Aclosed">
+            <span>Closed Today</span>
+            <strong id="currentClosedPrs">0</strong>
+            <small class="delta" id="closedPrDelta">vs yesterday</small>
+          </a>
         </article>
       </section>
 
@@ -40,52 +57,74 @@
         <label>
           Window
           <select id="windowSelect">
-            <option value="30">30 days</option>
-            <option value="90" selected>90 days</option>
+            <option value="30" selected>30 days</option>
+            <option value="90">90 days</option>
             <option value="180">180 days</option>
             <option value="365">1 year</option>
             <option value="all">All</option>
           </select>
         </label>
+        <div class="theme-toggle" role="group" aria-label="Theme">
+          <button type="button" data-theme-option="dark">Black</button>
+          <button type="button" data-theme-option="light">White</button>
+        </div>
       </section>
 
       <section class="grid">
-        <article class="panel panel-wide">
+        <article class="panel panel-wide" id="pr-flow">
           <div class="panel-head">
-            <h2>Pull Request Flow</h2>
-            <p>Daily opened, closed, merged, and net change.</p>
+            <div>
+              <h2><a href="#pr-flow">Pull Request Flow</a></h2>
+              <p>Daily opened, closed, merged, and net change.</p>
+            </div>
+            <a class="chart-anchor" href="#pr-flow" aria-label="Link to Pull Request Flow">#</a>
           </div>
+          <div class="legend" id="prFlowLegend"></div>
           <canvas id="prFlowChart" height="280"></canvas>
         </article>
 
-        <article class="panel">
+        <article class="panel" id="open-pr-backlog">
           <div class="panel-head">
-            <h2>Open PR Backlog</h2>
-            <p>End-of-day open PR count.</p>
+            <div>
+              <h2><a href="#open-pr-backlog">Open PR Backlog</a></h2>
+              <p>End-of-day open PR count.</p>
+            </div>
+            <a class="chart-anchor" href="#open-pr-backlog" aria-label="Link to Open PR Backlog">#</a>
           </div>
+          <div class="legend" id="openBacklogLegend"></div>
           <canvas id="openBacklogChart" height="260"></canvas>
         </article>
 
-        <article class="panel">
+        <article class="panel" id="stars-forks">
           <div class="panel-head">
-            <h2>Stars and Forks</h2>
-          <p>Cumulative current stars and timestamp-visible forks.</p>
+            <div>
+              <h2><a href="#stars-forks">Stars and Forks</a></h2>
+              <p>Cumulative current stars and timestamp-visible forks.</p>
+            </div>
+            <a class="chart-anchor" href="#stars-forks" aria-label="Link to Stars and Forks">#</a>
           </div>
+          <div class="legend" id="starForkLegend"></div>
           <canvas id="starForkChart" height="260"></canvas>
         </article>
 
-        <article class="panel">
+        <article class="panel" id="contributors">
           <div class="panel-head">
-            <h2>Contributors</h2>
-            <p>Estimated cumulative default-branch commit authors.</p>
+            <div>
+              <h2><a href="#contributors">Contributors</a></h2>
+              <p>Estimated cumulative default-branch commit authors.</p>
+            </div>
+            <a class="chart-anchor" href="#contributors" aria-label="Link to Contributors">#</a>
           </div>
+          <div class="legend" id="contributorsLegend"></div>
           <canvas id="contributorsChart" height="260"></canvas>
         </article>
 
-        <article class="panel">
+        <article class="panel" id="latest-14-days">
           <div class="panel-head">
-            <h2>Latest 14 Days</h2>
-            <p>Recent PR movement.</p>
+            <div>
+              <h2><a href="#latest-14-days">Latest 14 Days</a></h2>
+              <p>Recent PR movement.</p>
+            </div>
           </div>
           <div class="table-wrap">
             <table>
@@ -103,6 +142,17 @@
             </table>
           </div>
         </article>
+
+        <article class="panel" id="gh-commands">
+          <div class="panel-head">
+            <div>
+              <h2><a href="#gh-commands">Current gh Commands</a></h2>
+              <p>Commands for checking the live GitHub values.</p>
+            </div>
+            <a class="chart-anchor" href="#gh-commands" aria-label="Link to current gh commands">#</a>
+          </div>
+          <pre><code id="ghCommands"></code></pre>
+        </article>
       </section>
 
       <section class="notes">
@@ -119,6 +169,6 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
-    <script src="assets/app.js?v=20260918"></script>
+    <script src="assets/app.js?v=20260918-2"></script>
   </body>
 </html>
