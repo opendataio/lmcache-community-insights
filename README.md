@@ -45,8 +45,14 @@ python3 -m http.server 8000 --directory site
 
 Then open `http://localhost:8000`.
 
+The scheduled workflow runs with `FULL_HISTORY=false`. In that mode the script
+uses the committed JSON file as the historical baseline, refreshes PR metrics
+from pull request timestamps, updates current stars/forks from repository
+summary counts, and commits the new snapshot back to the repository. This avoids
+requiring a personal token secret for nightly runs.
+
 ## Deployment
 
 The `Update LMCache metrics` workflow runs nightly and can also be triggered
-manually. It regenerates `site/data/lmcache-metrics.json` and publishes the
-static site through GitHub Pages.
+manually. It updates `site/data/lmcache-metrics.json`, commits the refreshed
+snapshot, and publishes the static site through GitHub Pages.

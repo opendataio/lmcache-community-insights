@@ -23,6 +23,7 @@ METRIC_TIMEZONE = os.environ.get("METRIC_TIMEZONE", "Asia/Shanghai")
 OUTPUT_PATH = Path(os.environ.get("OUTPUT_PATH", "site/data/lmcache-metrics.json"))
 TOKEN = os.environ.get("GITHUB_TOKEN")
 OWNER, REPO = TARGET_REPOSITORY.split("/", 1)
+FULL_HISTORY = os.environ.get("FULL_HISTORY", "true").lower() not in {"0", "false", "no"}
 
 
 @dataclass(frozen=True)
@@ -461,6 +462,100 @@ def build_daily_metrics(
     return daily
 
 
+def load_existing_metrics(path: Path) -> dict[str, Any] | None:
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
+
+
+def contributor_totals_by_date(
+    contributor_first_dates: dict[str, date] | None,
+    days: list[date],
+) -> dict[date, int]:
+    if contributor_first_dates is None:
+        return {}
+
+    first_seen = Counter(contributor_first_dates.values())
+    running = 0
+    totals: dict[date, int] = {}
+    for day in days:
+        running += first_seen[day]
+        totals[day] = running
+    return totals
+
+
+def build_daily_metrics_from_snapshots(
+    prs: list[PullRequest],
+    existing_metrics: dict[str, Any] | None,
+    repo_summary: dict[str, int],
+    contributor_first_dates: dict[str, date] | None,
+    tz: ZoneInfo,
+) -> list[dict[str, Any]]:
+    opened = Counter(pr.created_at.date() for pr in prs)
+    closed = Counter(pr.closed_at.date() for pr in prs if pr.closed_at is not None)
+    merged = Counter(pr.merged_at.date() for pr in prs if pr.merged_at is not None)
+
+    existing_rows = {
+        row["date"]: row
+        for row in (existing_metrics or {}).get("daily", [])
+        if isinstance(row, dict) and row.get("date")
+    }
+
+    all_dates = set(opened) | set(closed) | set(merged)
+    all_dates.update(date.fromisoformat(day) for day in existing_rows)
+    if not all_dates:
+        all_dates.add(datetime.now(tz).date())
+
+    today = datetime.now(tz).date()
+    start = min(all_dates)
+    days = list(daterange(start, today))
+    contributor_totals = contributor_totals_by_date(contributor_first_dates, days)
+
+    stars_total = 0
+    forks_total = 0
+    contributors_total = 0
+    daily: list[dict[str, Any]] = []
+
+    for day in days:
+        existing = existing_rows.get(day.isoformat(), {})
+        stars_total = int(existing.get("stars_total", stars_total))
+        forks_total = int(existing.get("forks_total", forks_total))
+        contributors_total = int(existing.get("contributors_total", contributors_total))
+
+        if day == today:
+            stars_total = repo_summary["current_stars"]
+            forks_total = repo_summary["current_forks"]
+
+        if day in contributor_totals:
+            contributors_total = contributor_totals[day]
+
+        next_day_start = datetime.combine(day + timedelta(days=1), datetime_time.min, tz)
+        open_eod = sum(
+            pr.created_at < next_day_start
+            and (pr.closed_at is None or pr.closed_at >= next_day_start)
+            for pr in prs
+        )
+
+        daily.append(
+            {
+                "date": day.isoformat(),
+                "prs_opened": opened[day],
+                "prs_closed": closed[day],
+                "prs_merged": merged[day],
+                "pr_net": opened[day] - closed[day],
+                "prs_open_eod": open_eod,
+                "stars_total": stars_total,
+                "forks_total": forks_total,
+                "contributors_total": contributors_total,
+            }
+        )
+
+    return daily
+
+
 def write_json(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp_path = path.with_suffix(f"{path.suffix}.tmp")
@@ -472,11 +567,37 @@ def main() -> None:
     tz = ZoneInfo(METRIC_TIMEZONE)
     repo_summary = get_repository_summary()
     prs = get_pull_requests(tz)
-    star_dates = get_star_dates(tz)
-    fork_dates = get_fork_dates(tz)
-    contributor_first_dates = get_contributor_first_dates(tz)
+    existing_metrics = load_existing_metrics(OUTPUT_PATH)
 
-    daily = build_daily_metrics(prs, star_dates, fork_dates, contributor_first_dates, tz)
+    if FULL_HISTORY:
+        star_dates = get_star_dates(tz)
+        fork_dates = get_fork_dates(tz)
+        contributor_first_dates = get_contributor_first_dates(tz)
+        daily = build_daily_metrics(prs, star_dates, fork_dates, contributor_first_dates, tz)
+        visible_forks_tracked = len(fork_dates)
+        estimated_contributors = len(contributor_first_dates)
+    else:
+        try:
+            contributor_first_dates = get_contributor_first_dates(tz)
+        except RuntimeError as error:
+            if not should_try_rest_fallback(error):
+                raise
+            print("Contributor history unavailable; carrying forward previous estimate.", file=sys.stderr)
+            contributor_first_dates = None
+        daily = build_daily_metrics_from_snapshots(
+            prs,
+            existing_metrics,
+            repo_summary,
+            contributor_first_dates,
+            tz,
+        )
+        previous_summary = (existing_metrics or {}).get("summary", {})
+        visible_forks_tracked = int(previous_summary.get("visible_forks_tracked", 0))
+        estimated_contributors = (
+            len(contributor_first_dates)
+            if contributor_first_dates is not None
+            else int(previous_summary.get("estimated_contributors", daily[-1]["contributors_total"] if daily else 0))
+        )
 
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
@@ -486,9 +607,9 @@ def main() -> None:
             "current_open_prs": repo_summary["current_open_prs"],
             "current_stars": repo_summary["current_stars"],
             "current_forks": repo_summary["current_forks"],
-            "visible_forks_tracked": len(fork_dates),
-            "untracked_forks": max(0, repo_summary["current_forks"] - len(fork_dates)),
-            "estimated_contributors": len(contributor_first_dates),
+            "visible_forks_tracked": visible_forks_tracked,
+            "untracked_forks": max(0, repo_summary["current_forks"] - visible_forks_tracked),
+            "estimated_contributors": estimated_contributors,
         },
         "daily": daily,
     }
@@ -497,8 +618,9 @@ def main() -> None:
     print(
         "Generated "
         f"{OUTPUT_PATH} with {len(daily)} days, {len(prs)} PRs, "
-        f"{len(star_dates)} stars, {len(fork_dates)} forks, "
-        f"{len(contributor_first_dates)} estimated contributors."
+        f"{payload['summary']['current_stars']} current stars, "
+        f"{payload['summary']['current_forks']} current forks, "
+        f"{payload['summary']['estimated_contributors']} estimated contributors."
     )
 
 

@@ -9254,20 +9254,20 @@
     {
       "contributors_total": 317,
       "date": "2026-09-18",
-      "forks_total": 1872,
-      "pr_net": 3,
+      "forks_total": 1899,
+      "pr_net": 4,
       "prs_closed": 9,
       "prs_merged": 4,
-      "prs_open_eod": 494,
-      "prs_opened": 12,
+      "prs_open_eod": 495,
+      "prs_opened": 13,
       "stars_total": 11849
     }
   ],
-  "generated_at": "2026-09-18T02:30:05.378405Z",
+  "generated_at": "2026-09-18T02:37:46.792482Z",
   "repository": "LMCache/LMCache",
   "summary": {
     "current_forks": 1899,
-    "current_open_prs": 494,
+    "current_open_prs": 495,
     "current_stars": 11849,
     "estimated_contributors": 317,
     "untracked_forks": 27,

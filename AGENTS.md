@@ -3,6 +3,10 @@
 - Keep the dashboard dependency-light. The nightly workflow intentionally uses a
   standard-library Python collector and static HTML/CSS/JS so GitHub Actions does
   not need package installation before data collection.
+- Nightly runs use `FULL_HISTORY=false` and the committed
+  `site/data/lmcache-metrics.json` as the historical baseline. This avoids
+  storing a personal token secret for cross-repository stargazer/fork detail
+  pagination, which GitHub Actions' integration token cannot access.
 - Preserve metric definitions in `README.md` and the page UI whenever adding or
   renaming a metric. In particular, distinguish daily PR inflow/outflow from
   end-of-day open backlog.
