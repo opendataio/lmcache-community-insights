@@ -9252,24 +9252,24 @@
       "stars_total": 11845
     },
     {
-      "contributors_total": 317,
+      "contributors_total": 318,
       "date": "2026-09-18",
       "forks_total": 1901,
-      "pr_net": 9,
-      "prs_closed": 9,
-      "prs_merged": 4,
-      "prs_open_eod": 500,
+      "pr_net": 8,
+      "prs_closed": 10,
+      "prs_merged": 5,
+      "prs_open_eod": 499,
       "prs_opened": 18,
       "stars_total": 11849
     }
   ],
-  "generated_at": "2026-09-18T03:14:35.017850Z",
+  "generated_at": "2026-09-18T03:15:40.873605Z",
   "repository": "LMCache/LMCache",
   "summary": {
     "current_forks": 1901,
-    "current_open_prs": 500,
+    "current_open_prs": 499,
     "current_stars": 11849,
-    "estimated_contributors": 317,
+    "estimated_contributors": 318,
     "untracked_forks": 29,
     "visible_forks_tracked": 1872
   },
