@@ -9285,25 +9285,36 @@
       "stars_total": 11867
     },
     {
-      "contributors_total": 320,
+      "contributors_total": 322,
       "date": "2026-09-21",
       "forks_total": 1929,
-      "pr_net": 0,
+      "pr_net": 6,
+      "prs_closed": 6,
+      "prs_merged": 5,
+      "prs_open_eod": 535,
+      "prs_opened": 12,
+      "stars_total": 11875
+    },
+    {
+      "contributors_total": 322,
+      "date": "2026-09-22",
+      "forks_total": 1935,
+      "pr_net": 1,
       "prs_closed": 0,
       "prs_merged": 0,
-      "prs_open_eod": 529,
-      "prs_opened": 0,
-      "stars_total": 11875
+      "prs_open_eod": 536,
+      "prs_opened": 1,
+      "stars_total": 11885
     }
   ],
-  "generated_at": "2026-09-20T20:51:46.552472Z",
+  "generated_at": "2026-09-21T22:01:00.321235Z",
   "repository": "LMCache/LMCache",
   "summary": {
-    "current_forks": 1929,
-    "current_open_prs": 529,
-    "current_stars": 11875,
-    "estimated_contributors": 320,
-    "untracked_forks": 57,
+    "current_forks": 1935,
+    "current_open_prs": 536,
+    "current_stars": 11885,
+    "estimated_contributors": 322,
+    "untracked_forks": 63,
     "visible_forks_tracked": 1872
   },
   "timezone": "Asia/Shanghai"
