@@ -9255,11 +9255,11 @@
       "contributors_total": 320,
       "date": "2026-09-18",
       "forks_total": 1901,
-      "pr_net": 19,
+      "pr_net": 18,
       "prs_closed": 20,
       "prs_merged": 13,
-      "prs_open_eod": 510,
-      "prs_opened": 39,
+      "prs_open_eod": 509,
+      "prs_opened": 38,
       "stars_total": 11849
     },
     {
@@ -9269,7 +9269,7 @@
       "pr_net": 14,
       "prs_closed": 13,
       "prs_merged": 8,
-      "prs_open_eod": 524,
+      "prs_open_eod": 523,
       "prs_opened": 27,
       "stars_total": 11861
     },
@@ -9280,7 +9280,7 @@
       "pr_net": 5,
       "prs_closed": 3,
       "prs_merged": 2,
-      "prs_open_eod": 529,
+      "prs_open_eod": 528,
       "prs_opened": 8,
       "stars_total": 11867
     },
@@ -9291,7 +9291,7 @@
       "pr_net": 6,
       "prs_closed": 6,
       "prs_merged": 5,
-      "prs_open_eod": 535,
+      "prs_open_eod": 534,
       "prs_opened": 12,
       "stars_total": 11875
     },
@@ -9299,22 +9299,33 @@
       "contributors_total": 322,
       "date": "2026-09-22",
       "forks_total": 1935,
-      "pr_net": 1,
+      "pr_net": -1,
+      "prs_closed": 19,
+      "prs_merged": 11,
+      "prs_open_eod": 533,
+      "prs_opened": 18,
+      "stars_total": 11885
+    },
+    {
+      "contributors_total": 322,
+      "date": "2026-09-23",
+      "forks_total": 1938,
+      "pr_net": 4,
       "prs_closed": 0,
       "prs_merged": 0,
-      "prs_open_eod": 536,
-      "prs_opened": 1,
-      "stars_total": 11885
+      "prs_open_eod": 537,
+      "prs_opened": 4,
+      "stars_total": 11893
     }
   ],
-  "generated_at": "2026-09-21T22:01:00.321235Z",
+  "generated_at": "2026-09-22T21:22:24.460821Z",
   "repository": "LMCache/LMCache",
   "summary": {
-    "current_forks": 1935,
-    "current_open_prs": 536,
-    "current_stars": 11885,
+    "current_forks": 1938,
+    "current_open_prs": 537,
+    "current_stars": 11893,
     "estimated_contributors": 322,
-    "untracked_forks": 63,
+    "untracked_forks": 66,
     "visible_forks_tracked": 1872
   },
   "timezone": "Asia/Shanghai"
