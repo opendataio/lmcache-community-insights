@@ -8,6 +8,7 @@ import os
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from collections import Counter
 from dataclasses import dataclass
@@ -19,6 +20,7 @@ from zoneinfo import ZoneInfo
 
 API_ROOT = "https://api.github.com"
 TARGET_REPOSITORY = os.environ.get("TARGET_REPOSITORY", "LMCache/LMCache")
+CONTRIBUTOR_COUNT_URL = f"https://github.com/{TARGET_REPOSITORY}/_sidebar"
 METRIC_TIMEZONE = os.environ.get("METRIC_TIMEZONE", "Asia/Shanghai")
 OUTPUT_PATH = Path(os.environ.get("OUTPUT_PATH", "site/data/lmcache-metrics.json"))
 TOKEN = os.environ.get("GITHUB_TOKEN")
@@ -57,7 +59,8 @@ def request_json(
         "X-GitHub-Api-Version": "2022-11-28",
         "User-Agent": "opendataio-lmcache-community-insights",
     }
-    if TOKEN:
+    # The repository sidebar is public website data, not an authenticated API.
+    if TOKEN and urllib.parse.urlsplit(url).netloc == urllib.parse.urlsplit(API_ROOT).netloc:
         headers["Authorization"] = f"Bearer {TOKEN}"
 
     request = urllib.request.Request(url, data=body, headers=headers, method=method)
@@ -156,6 +159,22 @@ def get_repository_summary() -> dict[str, int]:
         "current_stars": int(repository["stargazerCount"]),
         "current_forks": int(repository["forkCount"]),
     }
+
+
+def get_current_contributor_count() -> int:
+    """Read the exact count used by GitHub's repository homepage sidebar.
+
+    The REST contributors list and unique commit authors have different
+    semantics. The sidebar's avatar list is only a preview, so use its count.
+    Fail the refresh if GitHub changes this website endpoint instead of silently
+    publishing a different metric under the same name.
+    """
+    payload, _ = request_json(CONTRIBUTOR_COUNT_URL, accept="application/json")
+    contributors = payload.get("contributors") if isinstance(payload, dict) else None
+    count = contributors.get("contributorCount") if isinstance(contributors, dict) else None
+    if type(count) is not int or count < 0:
+        raise ValueError(f"Missing or invalid contributorCount from {CONTRIBUTOR_COUNT_URL}")
+    return count
 
 
 def get_pull_requests(tz: ZoneInfo) -> list[PullRequest]:
@@ -563,11 +582,35 @@ def write_json(path: Path, payload: dict[str, Any]) -> None:
     tmp_path.replace(path)
 
 
+def apply_contributor_snapshots(
+    daily: list[dict[str, Any]],
+    existing_metrics: dict[str, Any] | None,
+    current_count: int,
+) -> None:
+    """Preserve observed homepage counts in both incremental and full refreshes.
+
+    Never backfill these from the old author estimate or interpolate unobserved
+    dates: the sidebar exposes a current count, not historical membership.
+    """
+    snapshots = {
+        row["date"]: row["github_contributors_total"]
+        for row in (existing_metrics or {}).get("daily", [])
+        if type(row.get("github_contributors_total")) is int
+        and row["github_contributors_total"] >= 0
+    }
+    for row in daily:
+        if row["date"] in snapshots:
+            row["github_contributors_total"] = snapshots[row["date"]]
+    if daily:
+        daily[-1]["github_contributors_total"] = current_count
+
+
 def main() -> None:
     tz = ZoneInfo(METRIC_TIMEZONE)
     repo_summary = get_repository_summary()
     prs = get_pull_requests(tz)
     existing_metrics = load_existing_metrics(OUTPUT_PATH)
+    current_contributors = get_current_contributor_count()
 
     if FULL_HISTORY:
         star_dates = get_star_dates(tz)
@@ -599,10 +642,12 @@ def main() -> None:
             else int(previous_summary.get("estimated_contributors", daily[-1]["contributors_total"] if daily else 0))
         )
 
+    apply_contributor_snapshots(daily, existing_metrics, current_contributors)
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "repository": TARGET_REPOSITORY,
         "timezone": METRIC_TIMEZONE,
+        "contributor_count_source": CONTRIBUTOR_COUNT_URL,
         "summary": {
             "current_open_prs": repo_summary["current_open_prs"],
             "current_stars": repo_summary["current_stars"],
@@ -610,6 +655,7 @@ def main() -> None:
             "visible_forks_tracked": visible_forks_tracked,
             "untracked_forks": max(0, repo_summary["current_forks"] - visible_forks_tracked),
             "estimated_contributors": estimated_contributors,
+            "current_contributors": current_contributors,
         },
         "daily": daily,
     }
@@ -620,7 +666,8 @@ def main() -> None:
         f"{OUTPUT_PATH} with {len(daily)} days, {len(prs)} PRs, "
         f"{payload['summary']['current_stars']} current stars, "
         f"{payload['summary']['current_forks']} current forks, "
-        f"{payload['summary']['estimated_contributors']} estimated contributors."
+        f"{payload['summary']['current_contributors']} GitHub contributors "
+        f"({payload['summary']['estimated_contributors']} estimated commit authors)."
     )
 
 

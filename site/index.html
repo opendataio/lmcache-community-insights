@@ -111,7 +111,8 @@
           <div class="panel-head">
             <div>
               <h2><a href="#contributors">Contributors</a></h2>
-              <p>Estimated cumulative default-branch commit authors.</p>
+              <p><a href="https://github.com/LMCache/LMCache"><strong id="currentContributors">—</strong> contributors · GitHub repository count</a></p>
+              <p id="contributorsHistoryNote">Loading contributor snapshots...</p>
             </div>
             <a class="chart-anchor" href="#contributors" aria-label="Link to Contributors">#</a>
           </div>
@@ -162,13 +163,16 @@
           Stars and forks use currently existing GitHub objects, so removed stars
           and deleted forks are not visible in the public API history. Some fork
           records can be counted by GitHub's repository summary without being
-          available in the timestamped fork connection. The contributor curve is
-          based on default-branch commit authors first seen in commit history.
+          available in the timestamped fork connection. Contributors uses the
+          GitHub repository homepage count, saved as daily snapshots. Earlier or
+          missed dates have no snapshot. The dashed commit-author curve is a
+          separate estimate based on first-seen default-branch authors, not
+          historical GitHub contributor totals.
         </p>
       </section>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
-    <script src="assets/app.js?v=20260918-2"></script>
+    <script src="assets/app.js?v=20260923-1"></script>
   </body>
 </html>

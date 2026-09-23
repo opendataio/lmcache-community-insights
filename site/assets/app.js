@@ -38,7 +38,8 @@ const legendHelp = {
   "Open PRs EOD": "Pull requests still open at the end of that day.",
   Stars: "Cumulative current stargazers by their visible starred_at date.",
   "Forks (visible)": "Cumulative timestamp-visible forks. GitHub's current fork total can include extra records.",
-  Contributors: "Estimated cumulative default-branch commit authors by first-seen commit date.",
+  Contributors: "Observed contributor count from the GitHub repository homepage. Missing dates have no snapshot.",
+  "Commit authors (estimate)": "Estimated unique default-branch commit authors; a different metric from GitHub's contributor count.",
 };
 
 function repoUrl(path = "") {
@@ -267,12 +268,26 @@ function renderCharts() {
     data: {
       labels,
       datasets: [
-        lineDataset(
-          "contributorsChart",
-          "Contributors",
-          rows.map((row) => row.contributors_total),
-          colors.contributors,
-        ),
+        {
+          ...lineDataset(
+            "contributorsChart",
+            "Contributors",
+            rows.map((row) => row.github_contributors_total ?? null),
+            colors.contributors,
+          ),
+          pointRadius: 3,
+          spanGaps: false,
+          tension: 0,
+        },
+        {
+          ...lineDataset(
+            "contributorsChart",
+            "Commit authors (estimate)",
+            rows.map((row) => row.contributors_total ?? null),
+            cssVar("--muted"),
+          ),
+          borderDash: [5, 5],
+        },
       ],
     },
     options: sharedOptions(),
@@ -313,6 +328,17 @@ function renderSummary() {
   setText("currentOpenPrs", formatNumber(metrics.summary.current_open_prs));
   setText("currentMergedPrs", formatNumber(today.prs_merged));
   setText("currentClosedPrs", formatNumber(today.prs_closed));
+  setText(
+    "currentContributors",
+    metrics.summary.current_contributors == null ? "—" : formatNumber(metrics.summary.current_contributors),
+  );
+  const firstSnapshot = metrics.daily.find((row) => row.github_contributors_total != null);
+  setText(
+    "contributorsHistoryNote",
+    firstSnapshot
+      ? `GitHub count snapshots since ${firstSnapshot.date}. Dashed line: commit-author estimate.`
+      : "No GitHub count snapshots yet. Dashed line: commit-author estimate.",
+  );
 
   renderDelta("netPrDelta", today.pr_net, yesterday.pr_net);
   renderDelta("openPrDelta", today.prs_open_eod, yesterday.prs_open_eod);
@@ -334,6 +360,10 @@ function renderCommands() {
     "gh api graphql \\",
     "  -f owner=LMCache -f name=LMCache \\",
     "  -f query='query($owner:String!,$name:String!){repository(owner:$owner,name:$name){pullRequests(states:OPEN){totalCount} stargazerCount forkCount}}'",
+    "",
+    "# Contributors: same source as the GitHub repository homepage",
+    "curl -fsSL -H 'Accept: application/json' https://github.com/LMCache/LMCache/_sidebar |",
+    '  python3 -c \'import json,sys; print(json.load(sys.stdin)["contributors"]["contributorCount"])\'',
     "",
     "# Today's PR flow in Asia/Shanghai, matching this dashboard's day boundary",
     `DAY=${day}`,
