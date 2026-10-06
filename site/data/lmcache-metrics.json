@@ -9408,10 +9408,10 @@
       "date": "2026-10-01",
       "forks_total": 1972,
       "github_contributors_total": 374,
-      "pr_net": 5,
-      "prs_closed": 9,
+      "pr_net": 6,
+      "prs_closed": 8,
       "prs_merged": 2,
-      "prs_open_eod": 503,
+      "prs_open_eod": 504,
       "prs_opened": 14,
       "stars_total": 11945
     },
@@ -9423,7 +9423,7 @@
       "pr_net": 5,
       "prs_closed": 7,
       "prs_merged": 2,
-      "prs_open_eod": 508,
+      "prs_open_eod": 509,
       "prs_opened": 12,
       "stars_total": 11949
     },
@@ -9435,7 +9435,7 @@
       "pr_net": 5,
       "prs_closed": 6,
       "prs_merged": 2,
-      "prs_open_eod": 513,
+      "prs_open_eod": 514,
       "prs_opened": 11,
       "stars_total": 11946
     },
@@ -9447,7 +9447,7 @@
       "pr_net": 5,
       "prs_closed": 2,
       "prs_merged": 1,
-      "prs_open_eod": 518,
+      "prs_open_eod": 519,
       "prs_opened": 7,
       "stars_total": 11951
     },
@@ -9459,32 +9459,44 @@
       "pr_net": 6,
       "prs_closed": 8,
       "prs_merged": 3,
-      "prs_open_eod": 524,
+      "prs_open_eod": 525,
       "prs_opened": 14,
       "stars_total": 11958
     },
     {
-      "contributors_total": 348,
+      "contributors_total": 349,
       "date": "2026-10-06",
       "forks_total": 1986,
       "github_contributors_total": 377,
+      "pr_net": 3,
+      "prs_closed": 9,
+      "prs_merged": 4,
+      "prs_open_eod": 528,
+      "prs_opened": 12,
+      "stars_total": 11960
+    },
+    {
+      "contributors_total": 349,
+      "date": "2026-10-07",
+      "forks_total": 1985,
+      "github_contributors_total": 378,
       "pr_net": 0,
       "prs_closed": 3,
-      "prs_merged": 3,
-      "prs_open_eod": 524,
+      "prs_merged": 2,
+      "prs_open_eod": 528,
       "prs_opened": 3,
-      "stars_total": 11960
+      "stars_total": 11962
     }
   ],
-  "generated_at": "2026-10-06T00:05:57.602251Z",
+  "generated_at": "2026-10-06T22:41:08.540308Z",
   "repository": "LMCache/LMCache",
   "summary": {
-    "current_contributors": 377,
-    "current_forks": 1986,
-    "current_open_prs": 524,
-    "current_stars": 11960,
-    "estimated_contributors": 348,
-    "untracked_forks": 114,
+    "current_contributors": 378,
+    "current_forks": 1985,
+    "current_open_prs": 528,
+    "current_stars": 11962,
+    "estimated_contributors": 349,
+    "untracked_forks": 113,
     "visible_forks_tracked": 1872
   },
   "timezone": "Asia/Shanghai"
