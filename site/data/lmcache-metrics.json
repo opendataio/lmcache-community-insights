@@ -9536,27 +9536,39 @@
       "stars_total": 11996
     },
     {
-      "contributors_total": 358,
+      "contributors_total": 359,
       "date": "2026-10-12",
       "forks_total": 2008,
       "github_contributors_total": 387,
-      "pr_net": 3,
-      "prs_closed": 6,
-      "prs_merged": 1,
-      "prs_open_eod": 583,
-      "prs_opened": 9,
+      "pr_net": -2,
+      "prs_closed": 17,
+      "prs_merged": 6,
+      "prs_open_eod": 578,
+      "prs_opened": 15,
       "stars_total": 12001
+    },
+    {
+      "contributors_total": 360,
+      "date": "2026-10-13",
+      "forks_total": 2010,
+      "github_contributors_total": 389,
+      "pr_net": 3,
+      "prs_closed": 5,
+      "prs_merged": 4,
+      "prs_open_eod": 581,
+      "prs_opened": 8,
+      "stars_total": 12007
     }
   ],
-  "generated_at": "2026-10-11T22:01:04.179420Z",
+  "generated_at": "2026-10-13T00:44:21.695095Z",
   "repository": "LMCache/LMCache",
   "summary": {
-    "current_contributors": 387,
-    "current_forks": 2008,
-    "current_open_prs": 583,
-    "current_stars": 12001,
-    "estimated_contributors": 358,
-    "untracked_forks": 136,
+    "current_contributors": 389,
+    "current_forks": 2010,
+    "current_open_prs": 581,
+    "current_stars": 12007,
+    "estimated_contributors": 360,
+    "untracked_forks": 138,
     "visible_forks_tracked": 1872
   },
   "timezone": "Asia/Shanghai"
