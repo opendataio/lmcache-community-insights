@@ -9613,22 +9613,34 @@
       "forks_total": 2080,
       "github_contributors_total": 402,
       "pr_net": 2,
+      "prs_closed": 8,
+      "prs_merged": 7,
+      "prs_open_eod": 620,
+      "prs_opened": 10,
+      "stars_total": 12105
+    },
+    {
+      "contributors_total": 373,
+      "date": "2026-10-19",
+      "forks_total": 2128,
+      "github_contributors_total": 402,
+      "pr_net": 2,
       "prs_closed": 0,
       "prs_merged": 0,
-      "prs_open_eod": 620,
+      "prs_open_eod": 622,
       "prs_opened": 2,
-      "stars_total": 12105
+      "stars_total": 12108
     }
   ],
-  "generated_at": "2026-10-17T20:39:21.335080Z",
+  "generated_at": "2026-10-18T20:47:57.852265Z",
   "repository": "LMCache/LMCache",
   "summary": {
     "current_contributors": 402,
-    "current_forks": 2080,
-    "current_open_prs": 620,
-    "current_stars": 12105,
+    "current_forks": 2128,
+    "current_open_prs": 622,
+    "current_stars": 12108,
     "estimated_contributors": 373,
-    "untracked_forks": 208,
+    "untracked_forks": 256,
     "visible_forks_tracked": 1872
   },
   "timezone": "Asia/Shanghai"
