@@ -8,6 +8,10 @@ const DayWindow = require("../site/assets/day-window.js");
 const shanghai = DayWindow.makePartsFormatter("Asia/Shanghai");
 const newYork = DayWindow.makePartsFormatter("America/New_York");
 
+/* Defaults: Asia/Shanghai (UTC+8) with an 08:00 day boundary */
+assert.equal(DayWindow.DAY_WINDOW_DEFAULTS.tz, "Asia/Shanghai");
+assert.equal(DayWindow.DAY_WINDOW_DEFAULTS.dayStartHour, 8);
+
 function iso(ms) {
   return new Date(ms).toISOString();
 }

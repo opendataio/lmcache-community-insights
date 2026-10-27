@@ -17,7 +17,7 @@
 })(typeof self !== "undefined" ? self : this, function () {
   "use strict";
 
-  const DAY_WINDOW_DEFAULTS = Object.freeze({ tz: "Asia/Shanghai", dayStartHour: 0 });
+  const DAY_WINDOW_DEFAULTS = Object.freeze({ tz: "Asia/Shanghai", dayStartHour: 8 });
 
   const TZ_OPTIONS = [
     { value: "UTC", label: "UTC" },

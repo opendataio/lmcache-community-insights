@@ -26,10 +26,11 @@ The day window is configurable per visitor. PR metrics are re-bucketed in the
 browser from raw PR events (`events.prs` in the data file) under the visitor's
 chosen IANA timezone and day-start hour. A day labeled `YYYY-MM-DD` with start
 hour `H` covers `[YYYY-MM-DD H:00, YYYY-MM-DD+1 H:00)` in that timezone. The
-default is 00:00 in `Asia/Shanghai` (UTC+8), which matches the collector.
-Settings are stored in `localStorage` (`lmcacheInsightsDayConfig`) and persist
-across page loads. Cumulative Stars/Forks/Contributors lines follow the
-collector's timezone (Asia/Shanghai midnight).
+default is 08:00 in `Asia/Shanghai` (UTC+8), so a day runs from 08:00 to the
+next day's 08:00. Settings are stored in `localStorage`
+(`lmcacheInsightsDayConfig`) and persist across page loads. Cumulative
+Stars/Forks/Contributors lines follow the collector's timezone (Asia/Shanghai
+midnight).
 
 The end-of-day open PR backlog is:
 

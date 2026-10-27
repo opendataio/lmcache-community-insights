@@ -171,11 +171,11 @@
           Draft pull requests are excluded from every PR metric: the open PR
           total, daily opened/closed/merged counts, net change, and the
           end-of-day open backlog. A day can start at any hour; by default it
-          starts at 00:00 in Asia/Shanghai (UTC+8). Pick a timezone and a
-          day-start hour in the toolbar and the PR charts, table, and KPIs are
-          re-bucketed in your browser — the choice is saved locally and reused
-          on your next visit. Cumulative Stars/Forks/Contributors lines follow
-          the data collector's timezone (Asia/Shanghai midnight).
+          runs 08:00 to next-day 08:00 in Asia/Shanghai (UTC+8). Pick a
+          timezone and a day-start hour in the toolbar and the PR charts, table,
+          and KPIs are re-bucketed in your browser — the choice is saved locally
+          and reused on your next visit. Cumulative Stars/Forks/Contributors
+          lines follow the data collector's timezone (Asia/Shanghai midnight).
         </p>
         <p>
           PR backlog is reconstructed from PR creation and close timestamps.
@@ -192,7 +192,7 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
-    <script src="assets/day-window.js?v=20261027-1"></script>
+    <script src="assets/day-window.js?v=20261027-2"></script>
     <script src="assets/app.js?v=20261027-1"></script>
   </body>
 </html>

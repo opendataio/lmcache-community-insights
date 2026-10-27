@@ -15,7 +15,7 @@
   GraphQL open-PR `totalCount` and the REST PR list both include drafts.
 - PR day windows are re-bucketed client-side from `events.prs` raw timestamps
   under the visitor's timezone and day-start hour (default Asia/Shanghai,
-  00:00). Keep `events.prs` non-draft-only and in UTC; keep the client
+  08:00). Keep `events.prs` non-draft-only and in UTC; keep the client
   bucketing rules in `site/assets/day-window.js` covered by
   `tests/test_day_window.js`. Cumulative Stars/Forks/Contributors lines stay on
   the collector timezone.
