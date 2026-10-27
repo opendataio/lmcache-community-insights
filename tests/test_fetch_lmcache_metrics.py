@@ -3,7 +3,7 @@
 import json
 import tempfile
 import unittest
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 from zoneinfo import ZoneInfo
@@ -114,6 +114,73 @@ class ContributorSnapshotTests(unittest.TestCase):
                  self.assertRaises(ValueError):
                 metrics.main()
             self.assertEqual(output.read_text(), original)
+
+
+class DraftExclusionTests(unittest.TestCase):
+    """Draft pull requests are excluded from every PR metric and raw event."""
+
+    def test_build_daily_metrics_excludes_drafts(self):
+        tz = ZoneInfo(metrics.METRIC_TIMEZONE)
+        day = datetime(2026, 10, 1, 10, 0, 0, tzinfo=tz)
+        day_label = day.date().isoformat()
+        prs = [
+            metrics.PullRequest(day, None, None),
+            metrics.PullRequest(day, None, None, is_draft=True),
+            metrics.PullRequest(day, day + timedelta(hours=2), None, is_draft=True),
+        ]
+        daily = metrics.build_daily_metrics(prs, [], [], {}, tz)
+        row = next(r for r in daily if r["date"] == day_label)
+        self.assertEqual(row["prs_opened"], 1)
+        self.assertEqual(row["prs_closed"], 0)
+        self.assertEqual(row["pr_net"], 1)
+        self.assertEqual(row["prs_open_eod"], 1)
+
+    def test_build_daily_metrics_from_snapshots_excludes_drafts(self):
+        tz = ZoneInfo(metrics.METRIC_TIMEZONE)
+        today = datetime.now(tz).date()
+        day = datetime.combine(today, datetime.min.time(), tz)
+        day_label = today.isoformat()
+        prs = [
+            metrics.PullRequest(day, None, None),
+            metrics.PullRequest(day, None, None, is_draft=True),
+        ]
+        daily = metrics.build_daily_metrics_from_snapshots(
+            prs, None, {"current_stars": 1, "current_forks": 0}, {}, tz
+        )
+        row = next(r for r in daily if r["date"] == day_label)
+        self.assertEqual(row["prs_opened"], 1)
+        self.assertEqual(row["prs_open_eod"], 1)
+
+    def test_main_writes_non_draft_events_and_open_count(self):
+        tz = ZoneInfo(metrics.METRIC_TIMEZONE)
+        today = datetime.now(tz).date()
+        base = datetime.combine(today, datetime.min.time(), tz)
+        draft_created = base + timedelta(hours=3)
+        prs = [
+            metrics.PullRequest(base, None, None),
+            metrics.PullRequest(base, base, None),
+            metrics.PullRequest(draft_created, None, None, is_draft=True),
+        ]
+        summary = {"current_stars": 5, "current_forks": 2}
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "metrics.json"
+            with patch.multiple(metrics, FULL_HISTORY=False, OUTPUT_PATH=output), \
+                 patch.object(metrics, "get_repository_summary", return_value=summary), \
+                 patch.object(metrics, "get_pull_requests", return_value=prs), \
+                 patch.object(metrics, "get_current_contributor_count", return_value=10), \
+                 patch.object(metrics, "get_contributor_first_dates", return_value={}):
+                metrics.main()
+            result = json.loads(output.read_text())
+        self.assertTrue(result["excludes_drafts"])
+        self.assertEqual(result["summary"]["current_open_prs"], 1)
+        events = result["events"]["prs"]
+        self.assertEqual(len(events), 2)
+        event_timestamps = [event["created_at"] for event in events]
+        self.assertNotIn(draft_created.astimezone(timezone.utc).isoformat().replace("+00:00", "Z"),
+                         event_timestamps)
+        for event in events:
+            self.assertEqual(event["created_at"][-1], "Z")
+            self.assertIn("created_at", event)
 
 
 if __name__ == "__main__":

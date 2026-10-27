@@ -10,6 +10,15 @@
 - Preserve metric definitions in `README.md` and the page UI whenever adding or
   renaming a metric. In particular, distinguish daily PR inflow/outflow from
   end-of-day open backlog.
+- Draft pull requests are excluded from every PR metric (open total, daily
+  flow, backlog). Do not reintroduce GitHub's draft-inclusive counts; the
+  GraphQL open-PR `totalCount` and the REST PR list both include drafts.
+- PR day windows are re-bucketed client-side from `events.prs` raw timestamps
+  under the visitor's timezone and day-start hour (default Asia/Shanghai,
+  00:00). Keep `events.prs` non-draft-only and in UTC; keep the client
+  bucketing rules in `site/assets/day-window.js` covered by
+  `tests/test_day_window.js`. Cumulative Stars/Forks/Contributors lines stay on
+  the collector timezone.
 - Stars and forks are reconstructed from currently existing timestamp-visible
   GitHub objects only. The repository fork summary can be higher than the
   timestamp-visible fork series; preserve that distinction unless a new durable
@@ -26,11 +35,13 @@
 - The sidebar is an unversioned website endpoint. Validate its count and fail
   before writing/deploying on errors; do not publish an estimate as a fresh count.
   Send `GITHUB_TOKEN` only to `api.github.com`, never the website endpoint.
-- Run `python3 -m unittest discover -s tests -v` and
-  `node --check site/assets/app.js` for collector changes. The collector/tests
-  work with Python 3.9+ and system timezone data without package installation.
-  Validate the scheduled `FULL_HISTORY=false` path with its real Actions token;
-  a local personal-token run does not prove integration-token compatibility.
+- Run `python3 -m unittest discover -s tests -v`,
+  `node --check site/assets/app.js`, `node --check site/assets/day-window.js`,
+  and `node tests/test_day_window.js` for collector or frontend changes. The
+  collector/tests work with Python 3.9+ and system timezone data without package
+  installation. Validate the scheduled `FULL_HISTORY=false` path with its real
+  Actions token; a local personal-token run does not prove integration-token
+  compatibility.
 - Before changing GitHub Actions or Pages deployment, verify workflow syntax with
   a local parser or a dry run where possible, and keep `workflow_dispatch`
   available for manual refreshes.

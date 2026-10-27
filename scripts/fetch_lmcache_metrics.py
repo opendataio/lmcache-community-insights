@@ -33,6 +33,16 @@ class PullRequest:
     created_at: datetime
     closed_at: datetime | None
     merged_at: datetime | None
+    is_draft: bool = False
+
+
+def non_draft(prs: list[PullRequest]) -> list[PullRequest]:
+    """Draft pull requests are intentionally excluded from every PR metric.
+
+    The dashboard does not track draft PR volume, so drafts are dropped before
+    any counting happens (open totals, daily flow, and the open backlog alike).
+    """
+    return [pr for pr in prs if not pr.is_draft]
 
 
 def parse_github_datetime(value: str | None, tz: ZoneInfo) -> datetime | None:
@@ -139,15 +149,16 @@ def should_try_rest_fallback(error: Exception) -> bool:
 
 
 def get_repository_summary() -> dict[str, int]:
+    """Fetch stars and forks. Open PR count comes from the full PR list below,
+    because GitHub's `pullRequests(states: OPEN) totalCount` includes drafts and
+    the dashboard deliberately excludes them.
+    """
     data = graphql(
         """
         query RepositorySummary($owner: String!, $name: String!) {
           repository(owner: $owner, name: $name) {
             stargazerCount
             forkCount
-            openPullRequests: pullRequests(states: OPEN) {
-              totalCount
-            }
           }
         }
         """,
@@ -155,7 +166,6 @@ def get_repository_summary() -> dict[str, int]:
     )
     repository = data["repository"]
     return {
-        "current_open_prs": int(repository["openPullRequests"]["totalCount"]),
         "current_stars": int(repository["stargazerCount"]),
         "current_forks": int(repository["forkCount"]),
     }
@@ -190,6 +200,7 @@ def get_pull_requests(tz: ZoneInfo) -> list[PullRequest]:
             createdAt
             closedAt
             mergedAt
+            isDraft
           }
           pageInfo {
             hasNextPage
@@ -213,6 +224,7 @@ def get_pull_requests(tz: ZoneInfo) -> list[PullRequest]:
                     created_at=created_at,
                     closed_at=parse_github_datetime(item.get("closedAt"), tz),
                     merged_at=parse_github_datetime(item.get("mergedAt"), tz),
+                    is_draft=bool(item.get("isDraft")),
                 )
             )
         log_progress("pull requests", len(prs))
@@ -434,6 +446,7 @@ def build_daily_metrics(
     contributor_first_dates: dict[str, date],
     tz: ZoneInfo,
 ) -> list[dict[str, Any]]:
+    prs = non_draft(prs)
     opened = Counter(pr.created_at.date() for pr in prs)
     closed = Counter(pr.closed_at.date() for pr in prs if pr.closed_at is not None)
     merged = Counter(pr.merged_at.date() for pr in prs if pr.merged_at is not None)
@@ -513,6 +526,7 @@ def build_daily_metrics_from_snapshots(
     contributor_first_dates: dict[str, date] | None,
     tz: ZoneInfo,
 ) -> list[dict[str, Any]]:
+    prs = non_draft(prs)
     opened = Counter(pr.created_at.date() for pr in prs)
     closed = Counter(pr.closed_at.date() for pr in prs if pr.closed_at is not None)
     merged = Counter(pr.merged_at.date() for pr in prs if pr.merged_at is not None)
@@ -611,6 +625,11 @@ def main() -> None:
     prs = get_pull_requests(tz)
     existing_metrics = load_existing_metrics(OUTPUT_PATH)
     current_contributors = get_current_contributor_count()
+    # GitHub's open-PR total includes drafts; the dashboard counts only
+    # currently-open, non-draft PRs.
+    repo_summary["current_open_prs"] = sum(
+        1 for pr in non_draft(prs) if pr.closed_at is None
+    )
 
     if FULL_HISTORY:
         star_dates = get_star_dates(tz)
@@ -647,6 +666,7 @@ def main() -> None:
         "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "repository": TARGET_REPOSITORY,
         "timezone": METRIC_TIMEZONE,
+        "excludes_drafts": True,
         "contributor_count_source": CONTRIBUTOR_COUNT_URL,
         "summary": {
             "current_open_prs": repo_summary["current_open_prs"],
@@ -656,6 +676,27 @@ def main() -> None:
             "untracked_forks": max(0, repo_summary["current_forks"] - visible_forks_tracked),
             "estimated_contributors": estimated_contributors,
             "current_contributors": current_contributors,
+        },
+        # Raw non-draft PR events let the browser re-bucket daily PR metrics
+        # under each visitor's own timezone and day-start hour, without
+        # re-running the collector. Timestamps are UTC.
+        "events": {
+            "prs": [
+                {
+                    "created_at": pr.created_at.astimezone(timezone.utc).isoformat().replace("+00:00", "Z"),
+                    "closed_at": (
+                        pr.closed_at.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+                        if pr.closed_at is not None
+                        else None
+                    ),
+                    "merged_at": (
+                        pr.merged_at.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+                        if pr.merged_at is not None
+                        else None
+                    ),
+                }
+                for pr in non_draft(prs)
+            ]
         },
         "daily": daily,
     }

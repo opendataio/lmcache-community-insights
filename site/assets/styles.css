@@ -158,9 +158,10 @@ h1 {
 .toolbar {
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   justify-content: flex-end;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
   padding: 12px 14px;
 }
 
@@ -181,6 +182,18 @@ select {
   color: var(--ink);
   font: inherit;
   padding: 8px 10px;
+}
+
+.day-note {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+.day-note-warn {
+  color: var(--warn);
 }
 
 .theme-toggle {
@@ -372,6 +385,10 @@ code {
   }
 
   .updated {
+    text-align: left;
+  }
+
+  .day-note {
     text-align: left;
   }
 

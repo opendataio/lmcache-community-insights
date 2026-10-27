@@ -4,12 +4,12 @@ Nightly GitHub Pages dashboard for LMCache pull request and community activity.
 
 The dashboard is generated from public GitHub data and tracks:
 
-- daily opened pull requests
-- daily closed pull requests
+- daily opened pull requests (draft PRs excluded)
+- daily closed pull requests (draft PRs excluded)
 - daily merged pull requests
 - daily net PR change (`opened - closed`)
-- end-of-day open PR backlog
-- current open PR total
+- end-of-day open PR backlog (draft PRs excluded)
+- current open PR total (draft PRs excluded)
 - cumulative current stars by `starred_at`
 - cumulative current forks by fork `created_at`
 - the GitHub repository homepage contributor count, saved as daily snapshots
@@ -17,14 +17,28 @@ The dashboard is generated from public GitHub data and tracks:
 
 ## Metric Notes
 
-PR metrics are reconstructed from every pull request returned by
-`/repos/LMCache/LMCache/pulls?state=all`.
+Draft pull requests are intentionally excluded from every PR metric. GitHub's
+open-PR `totalCount` and the REST/GraphQL PR lists include drafts, so the
+collector reads each PR's `isDraft` field and drops drafts before any counting:
+open totals, daily flow, and the end-of-day backlog are all non-draft numbers.
+
+The day window is configurable per visitor. PR metrics are re-bucketed in the
+browser from raw PR events (`events.prs` in the data file) under the visitor's
+chosen IANA timezone and day-start hour. A day labeled `YYYY-MM-DD` with start
+hour `H` covers `[YYYY-MM-DD H:00, YYYY-MM-DD+1 H:00)` in that timezone. The
+default is 00:00 in `Asia/Shanghai` (UTC+8), which matches the collector.
+Settings are stored in `localStorage` (`lmcacheInsightsDayConfig`) and persist
+across page loads. Cumulative Stars/Forks/Contributors lines follow the
+collector's timezone (Asia/Shanghai midnight).
 
 The end-of-day open PR backlog is:
 
 ```text
 created_at < next_day_start AND (closed_at is null OR closed_at >= next_day_start)
 ```
+
+`next_day_start` is the start of the next day window in the configured
+timezone.
 
 Stars and forks are historical curves over currently existing, timestamp-visible
 stars/forks. GitHub does not expose deleted historical stars/forks through the
@@ -69,6 +83,17 @@ curl -fsSL -H 'Accept: application/json' https://github.com/LMCache/LMCache/_sid
   python3 -c 'import json,sys; print(json.load(sys.stdin)["contributors"]["contributorCount"])'
 ```
 
+## Data File
+
+`site/data/lmcache-metrics.json` is written by the collector. In addition to the
+server-computed `daily` rows, it contains `events.prs`: every non-draft pull
+request as `{created_at, closed_at, merged_at}` UTC timestamps (null where not
+applicable). The browser uses these raw events to re-bucket daily PR metrics
+under each visitor's day-window settings, so no collector re-run is needed to
+try a different timezone or day boundary. `excludes_drafts: true` records that
+draft PRs were dropped. When the data file predates `events.prs`, the page falls
+back to the stored server rows.
+
 ## Local Generation
 
 Use Python 3.9+ with timezone data and an authenticated GitHub CLI. The collector
@@ -76,6 +101,7 @@ and its tests use only the Python standard library.
 
 ```bash
 python3 -m unittest discover -s tests -v
+node tests/test_day_window.js
 GITHUB_TOKEN="$(gh auth token)" python3 scripts/fetch_lmcache_metrics.py
 python3 -m http.server 8000 --directory site
 ```

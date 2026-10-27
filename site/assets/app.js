@@ -2,6 +2,7 @@ const DATA_URL = "data/lmcache-metrics.json";
 const REPO = "LMCache/LMCache";
 const THEME_KEY = "lmcacheInsightsTheme";
 const WINDOW_KEY = "lmcacheInsightsWindow";
+const DAY_CONFIG_KEY = "lmcacheInsightsDayConfig";
 
 const numberFormatter = new Intl.NumberFormat("en-US");
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
@@ -12,6 +13,13 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
 
 let metrics = null;
 let charts = [];
+// Daily rows shown everywhere (charts, KPIs, table). Re-bucketed client-side
+// from raw PR events under the visitor's day window, or the stored server rows
+// when the data file predates raw events.
+let rows = [];
+let usingClientWindow = false;
+let dayConfig = loadDayConfig();
+
 const datasetVisibility = new Map([
   ["prFlowChart:Opened", false],
   ["prFlowChart:Closed", false],
@@ -31,11 +39,11 @@ const colors = {
 };
 
 const legendHelp = {
-  Opened: "Pull requests whose created_at date falls on this day.",
-  Closed: "Pull requests whose closed_at date falls on this day, including merged PRs.",
-  Merged: "Pull requests whose merged_at date falls on this day.",
+  Opened: "Pull requests (drafts excluded) opened within this day window.",
+  Closed: "Pull requests (drafts excluded) closed within this day window, including merged PRs.",
+  Merged: "Pull requests merged within this day window.",
   Net: "Daily opened PRs minus daily closed PRs. Positive means the open backlog grew that day.",
-  "Open PRs EOD": "Pull requests still open at the end of that day.",
+  "Open PRs EOD": "Pull requests (drafts excluded) still open at the end of that day window.",
   Stars: "Cumulative current stargazers by their visible starred_at date.",
   "Forks (visible)": "Cumulative timestamp-visible forks. GitHub's current fork total can include extra records.",
   Contributors: "Observed contributor count from the GitHub repository homepage. Missing dates have no snapshot.",
@@ -54,6 +62,10 @@ function formatNumber(value) {
   return numberFormatter.format(value ?? 0);
 }
 
+function pad2(value) {
+  return String(value).padStart(2, "0");
+}
+
 function cssVar(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
@@ -62,18 +74,80 @@ function setText(id, value) {
   document.getElementById(id).textContent = value;
 }
 
+function loadDayConfig() {
+  const defaults = { ...DayWindow.DAY_WINDOW_DEFAULTS };
+  try {
+    const stored = JSON.parse(localStorage.getItem(DAY_CONFIG_KEY));
+    if (stored && typeof stored === "object") {
+      return {
+        tz: DayWindow.TZ_OPTIONS.some((option) => option.value === stored.tz)
+          ? stored.tz
+          : defaults.tz,
+        dayStartHour:
+          Number.isInteger(stored.dayStartHour) &&
+          stored.dayStartHour >= 0 &&
+          stored.dayStartHour <= 23
+            ? stored.dayStartHour
+            : defaults.dayStartHour,
+      };
+    }
+  } catch (error) {
+    console.warn("Ignoring invalid day-window config", error);
+  }
+  return defaults;
+}
+
+function saveDayConfig() {
+  localStorage.setItem(DAY_CONFIG_KEY, JSON.stringify(dayConfig));
+}
+
+function refreshRows() {
+  if (!metrics) {
+    rows = [];
+    return;
+  }
+  const hasEvents =
+    metrics.events && Array.isArray(metrics.events.prs) && metrics.events.prs.length > 0;
+  if (hasEvents) {
+    rows = DayWindow.buildDailyRows(metrics.events, dayConfig, Date.now());
+    usingClientWindow = true;
+  } else {
+    rows = Array.isArray(metrics.daily) ? metrics.daily : [];
+    usingClientWindow = false;
+  }
+}
+
 function latestRows() {
-  const today = metrics.daily.at(-1) ?? {};
-  const yesterday = metrics.daily.at(-2) ?? {};
+  const today = rows.at(-1) ?? {};
+  const yesterday = rows.at(-2) ?? {};
   return { today, yesterday };
 }
 
 function selectedRows() {
   const selectedWindow = document.getElementById("windowSelect").value;
-  if (!metrics?.daily?.length || selectedWindow === "all") {
-    return metrics.daily;
+  if (!rows.length || selectedWindow === "all") {
+    return rows;
   }
-  return metrics.daily.slice(-Number(selectedWindow));
+  return rows.slice(-Number(selectedWindow));
+}
+
+/**
+ * Map a server-side cumulative field onto the current x-axis labels.
+ * carry=true carries the last known value forward (stars/forks/estimate);
+ * carry=false leaves gaps where no observation exists (contributor snapshots).
+ */
+function serverSeries(field, labels, carry) {
+  const byDate = new Map();
+  for (const row of metrics.daily || []) {
+    byDate.set(row.date, row[field]);
+  }
+  let last = null;
+  return labels.map((label) => {
+    if (byDate.has(label)) {
+      last = byDate.get(label);
+    }
+    return carry ? last : byDate.has(label) ? byDate.get(label) : null;
+  });
 }
 
 function metricDelta(current, previous) {
@@ -211,8 +285,8 @@ function makeChart(canvasId, legendId, config) {
 }
 
 function renderCharts() {
-  const rows = selectedRows();
-  const labels = rows.map((row) => row.date);
+  const windowRows = selectedRows();
+  const labels = windowRows.map((row) => row.date);
 
   destroyCharts();
 
@@ -221,10 +295,10 @@ function renderCharts() {
     data: {
       labels,
       datasets: [
-        barDataset("prFlowChart", "Opened", rows.map((row) => row.prs_opened), colors.opened),
-        barDataset("prFlowChart", "Closed", rows.map((row) => row.prs_closed), colors.closed),
-        barDataset("prFlowChart", "Merged", rows.map((row) => row.prs_merged), colors.merged),
-        lineDataset("prFlowChart", "Net", rows.map((row) => row.pr_net), colors.net),
+        barDataset("prFlowChart", "Opened", windowRows.map((row) => row.prs_opened), colors.opened),
+        barDataset("prFlowChart", "Closed", windowRows.map((row) => row.prs_closed), colors.closed),
+        barDataset("prFlowChart", "Merged", windowRows.map((row) => row.prs_merged), colors.merged),
+        lineDataset("prFlowChart", "Net", windowRows.map((row) => row.pr_net), colors.net),
       ],
     },
     options: sharedOptions(),
@@ -238,7 +312,7 @@ function renderCharts() {
         lineDataset(
           "openBacklogChart",
           "Open PRs EOD",
-          rows.map((row) => row.prs_open_eod),
+          windowRows.map((row) => row.prs_open_eod),
           colors.open,
         ),
       ],
@@ -251,11 +325,11 @@ function renderCharts() {
     data: {
       labels,
       datasets: [
-        lineDataset("starForkChart", "Stars", rows.map((row) => row.stars_total), colors.stars),
+        lineDataset("starForkChart", "Stars", serverSeries("stars_total", labels, true), colors.stars),
         lineDataset(
           "starForkChart",
           "Forks (visible)",
-          rows.map((row) => row.forks_total),
+          serverSeries("forks_total", labels, true),
           colors.forks,
         ),
       ],
@@ -272,7 +346,7 @@ function renderCharts() {
           ...lineDataset(
             "contributorsChart",
             "Contributors",
-            rows.map((row) => row.github_contributors_total ?? null),
+            serverSeries("github_contributors_total", labels, false),
             colors.contributors,
           ),
           pointRadius: 3,
@@ -283,7 +357,7 @@ function renderCharts() {
           ...lineDataset(
             "contributorsChart",
             "Commit authors (estimate)",
-            rows.map((row) => row.contributors_total ?? null),
+            serverSeries("contributors_total", labels, true),
             cssVar("--muted"),
           ),
           borderDash: [5, 5],
@@ -297,7 +371,7 @@ function renderCharts() {
 function renderRecentTable() {
   const body = document.getElementById("recentTable");
   body.replaceChildren(
-    ...metrics.daily.slice(-14).reverse().map((row) => {
+    ...rows.slice(-14).reverse().map((row) => {
       const tr = document.createElement("tr");
       const netClass = row.pr_net > 0 ? "net-pos" : row.pr_net < 0 ? "net-neg" : "";
       tr.innerHTML = `
@@ -316,9 +390,9 @@ function renderRecentTable() {
 function setKpiLinks(today) {
   const day = today.date;
   document.getElementById("netPrLink").href = "#pr-flow";
-  document.getElementById("openPrLink").href = searchUrl("is:pr is:open");
-  document.getElementById("mergedPrLink").href = searchUrl(`is:pr merged:${day}`);
-  document.getElementById("closedPrLink").href = searchUrl(`is:pr closed:${day}`);
+  document.getElementById("openPrLink").href = searchUrl("is:pr is:open -is:draft");
+  document.getElementById("mergedPrLink").href = searchUrl(`is:pr is:merged merged:${day}`);
+  document.getElementById("closedPrLink").href = searchUrl(`is:pr is:closed -is:draft closed:${day}`);
 }
 
 function renderSummary() {
@@ -352,31 +426,68 @@ function renderSummary() {
   setText("updatedAt", `Updated ${generated} (${metrics.timezone})`);
 }
 
+function renderDayWindowNote() {
+  const note = document.getElementById("dayWindowNote");
+  if (!usingClientWindow) {
+    note.textContent =
+      "Data not yet refreshed with raw PR events — showing stored daily values. " +
+      "Run the collector or the nightly workflow to enable per-visitor day windows.";
+    note.className = "day-note day-note-warn";
+    return;
+  }
+  const hour = pad2(dayConfig.dayStartHour);
+  note.textContent =
+    `Day window: ${hour}:00 → next day ${hour}:00 (${tzLabel(dayConfig.tz)}) · Draft PRs excluded`;
+  note.className = "day-note";
+}
+
+function tzLabel(value) {
+  const option = DayWindow.TZ_OPTIONS.find((item) => item.value === value);
+  return option ? option.label : value;
+}
+
 function renderCommands() {
   const { today } = latestRows();
   const day = today.date;
+  const hour = pad2(dayConfig.dayStartHour);
   const commands = [
-    "# Current open PRs, stars, and forks",
+    "# Current open PRs excluding drafts, plus current stars and forks",
+    "gh api --paginate '/repos/LMCache/LMCache/pulls?state=open&per_page=100' \\",
+    "  --jq '[.[] | select(.draft | not)] | length'",
     "gh api graphql \\",
     "  -f owner=LMCache -f name=LMCache \\",
-    "  -f query='query($owner:String!,$name:String!){repository(owner:$owner,name:$name){pullRequests(states:OPEN){totalCount} stargazerCount forkCount}}'",
+    "  -f query='query($owner:String!,$name:String!){repository(owner:$owner,name:$name){stargazerCount forkCount}}'",
     "",
     "# Contributors: same source as the GitHub repository homepage",
     "curl -fsSL -H 'Accept: application/json' https://github.com/LMCache/LMCache/_sidebar |",
     '  python3 -c \'import json,sys; print(json.load(sys.stdin)["contributors"]["contributorCount"])\'',
     "",
-    "# Today's PR flow in Asia/Shanghai, matching this dashboard's day boundary",
+    `# Today's PR flow in your day window (${tzLabel(dayConfig.tz)}, starts ${hour}:00, drafts excluded)`,
     `DAY=${day}`,
+    `TZ=${dayConfig.tz} DAY_START=${dayConfig.dayStartHour}`,
     "gh api --paginate '/repos/LMCache/LMCache/pulls?state=all&per_page=100' \\",
-    "  --jq '.[] | [.created_at, .closed_at, .merged_at] | @tsv' | \\",
-    '  DAY="$DAY" TZ=Asia/Shanghai python3 -c \'import os,sys; from datetime import datetime; from zoneinfo import ZoneInfo; day=os.environ["DAY"]; tz=ZoneInfo(os.environ["TZ"]); counts={"opened":0,"closed":0,"merged":0};',
+    "  --jq '.[] | select(.draft | not) | [.created_at, .closed_at, .merged_at] | @tsv' | \\",
+    '  DAY="$DAY" TZ="$TZ" DAY_START="$DAY_START" python3 -c \'import os,sys; from datetime import datetime,timedelta; from zoneinfo import ZoneInfo; day=os.environ["DAY"]; tz=ZoneInfo(os.environ["TZ"]); h=int(os.environ["DAY_START"]); counts={"opened":0,"closed":0,"merged":0};',
+    'def bucket(value):',
+    '    if not value: return None',
+    '    dt=datetime.fromisoformat(value.replace("Z","+00:00")).astimezone(tz)',
+    '    d=dt.date()',
+    '    if dt.hour < h: d=d-timedelta(days=1)',
+    '    return d.isoformat()',
     'for line in sys.stdin:',
     '    created, closed, merged = line.rstrip("\\n").split("\\t")',
-    '    def same_day(value): return bool(value) and datetime.fromisoformat(value.replace("Z","+00:00")).astimezone(tz).date().isoformat() == day',
-    '    counts["opened"] += same_day(created); counts["closed"] += same_day(closed); counts["merged"] += same_day(merged)',
-    'print("opened={opened} closed={closed} merged={merged} net={net}".format(opened=counts["opened"], closed=counts["closed"], merged=counts["merged"], net=counts["opened"]-counts["closed"]))\'',
+    '    counts["opened"] += bucket(created)==day; counts["closed"] += bucket(closed)==day; counts["merged"] += bucket(merged)==day',
+    'print("opened={o} closed={c} merged={m} net={n}".format(o=counts["opened"], c=counts["closed"], m=counts["merged"], n=counts["opened"]-counts["closed"]))\'',
   ];
   setText("ghCommands", commands.join("\n"));
+}
+
+function renderAll() {
+  renderSummary();
+  renderRecentTable();
+  renderDayWindowNote();
+  renderCommands();
+  renderCharts();
 }
 
 function applyTheme(theme) {
@@ -391,12 +502,50 @@ function applyTheme(theme) {
   }
 }
 
+function populateDayConfigControls() {
+  const tzSelect = document.getElementById("tzSelect");
+  tzSelect.replaceChildren(
+    ...DayWindow.TZ_OPTIONS.map((option) => {
+      const el = document.createElement("option");
+      el.value = option.value;
+      el.textContent = option.label;
+      return el;
+    }),
+  );
+  tzSelect.value = dayConfig.tz;
+
+  const dayStartSelect = document.getElementById("dayStartSelect");
+  dayStartSelect.replaceChildren(
+    ...Array.from({ length: 24 }, (_, hour) => {
+      const el = document.createElement("option");
+      el.value = String(hour);
+      el.textContent = `${pad2(hour)}:00`;
+      return el;
+    }),
+  );
+  dayStartSelect.value = String(dayConfig.dayStartHour);
+}
+
 function initPreferences() {
   const storedWindow = localStorage.getItem(WINDOW_KEY) ?? "30";
   const windowSelect = document.getElementById("windowSelect");
   if ([...windowSelect.options].some((option) => option.value === storedWindow)) {
     windowSelect.value = storedWindow;
   }
+
+  populateDayConfigControls();
+  document.getElementById("tzSelect").addEventListener("change", (event) => {
+    dayConfig.tz = event.target.value;
+    saveDayConfig();
+    refreshRows();
+    renderAll();
+  });
+  document.getElementById("dayStartSelect").addEventListener("change", (event) => {
+    dayConfig.dayStartHour = Number(event.target.value);
+    saveDayConfig();
+    refreshRows();
+    renderAll();
+  });
 
   applyTheme(localStorage.getItem(THEME_KEY) ?? "dark");
   document.querySelectorAll("[data-theme-option]").forEach((button) => {
@@ -418,10 +567,8 @@ async function init() {
     throw new Error(`Unable to fetch ${DATA_URL}: ${response.status}`);
   }
   metrics = await response.json();
-  renderSummary();
-  renderRecentTable();
-  renderCommands();
-  renderCharts();
+  refreshRows();
+  renderAll();
 }
 
 init().catch((error) => {

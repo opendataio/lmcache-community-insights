@@ -10,7 +10,7 @@
         document.documentElement.dataset.theme = stored === "light" ? "light" : "dark";
       })();
     </script>
-    <link rel="stylesheet" href="assets/styles.css?v=20260918-2">
+    <link rel="stylesheet" href="assets/styles.css?v=20261027-1">
   </head>
   <body>
     <main class="shell">
@@ -31,21 +31,21 @@
           </a>
         </article>
         <article>
-          <a class="kpi-card" id="openPrLink" href="https://github.com/LMCache/LMCache/pulls?q=is%3Apr+is%3Aopen">
-            <span>Open PRs</span>
+          <a class="kpi-card" id="openPrLink" href="https://github.com/LMCache/LMCache/pulls?q=is%3Apr+is%3Aopen+-is%3Adraft" title="Currently open pull requests, excluding drafts">
+            <span>Open PRs (no drafts)</span>
             <strong id="currentOpenPrs">0</strong>
             <small class="delta" id="openPrDelta">vs yesterday</small>
           </a>
         </article>
         <article>
-          <a class="kpi-card" id="mergedPrLink" href="https://github.com/LMCache/LMCache/pulls?q=is%3Apr+is%3Amerged">
+          <a class="kpi-card" id="mergedPrLink" href="https://github.com/LMCache/LMCache/pulls?q=is%3Apr+is%3Amerged" title="Pull requests merged within the current day window">
             <span>Merged Today</span>
             <strong id="currentMergedPrs">0</strong>
             <small class="delta" id="mergedPrDelta">vs yesterday</small>
           </a>
         </article>
         <article>
-          <a class="kpi-card" id="closedPrLink" href="https://github.com/LMCache/LMCache/pulls?q=is%3Apr+is%3Aclosed">
+          <a class="kpi-card" id="closedPrLink" href="https://github.com/LMCache/LMCache/pulls?q=is%3Apr+is%3Aclosed+-is%3Adraft" title="Pull requests closed within the current day window, excluding drafts">
             <span>Closed Today</span>
             <strong id="currentClosedPrs">0</strong>
             <small class="delta" id="closedPrDelta">vs yesterday</small>
@@ -64,18 +64,27 @@
             <option value="all">All</option>
           </select>
         </label>
+        <label>
+          Timezone
+          <select id="tzSelect" aria-label="Statistic timezone"></select>
+        </label>
+        <label>
+          Day starts at
+          <select id="dayStartSelect" aria-label="Day start hour"></select>
+        </label>
         <div class="theme-toggle" role="group" aria-label="Theme">
           <button type="button" data-theme-option="dark">Black</button>
           <button type="button" data-theme-option="light">White</button>
         </div>
       </section>
+      <div class="day-note" id="dayWindowNote">Loading day window...</div>
 
       <section class="grid">
         <article class="panel panel-wide" id="pr-flow">
           <div class="panel-head">
             <div>
               <h2><a href="#pr-flow">Pull Request Flow</a></h2>
-              <p>Daily opened, closed, merged, and net change.</p>
+              <p>Daily opened, closed, merged, and net change. Draft PRs excluded.</p>
             </div>
             <a class="chart-anchor" href="#pr-flow" aria-label="Link to Pull Request Flow">#</a>
           </div>
@@ -87,7 +96,7 @@
           <div class="panel-head">
             <div>
               <h2><a href="#open-pr-backlog">Open PR Backlog</a></h2>
-              <p>End-of-day open PR count.</p>
+              <p>End-of-day open PR count (drafts excluded).</p>
             </div>
             <a class="chart-anchor" href="#open-pr-backlog" aria-label="Link to Open PR Backlog">#</a>
           </div>
@@ -159,6 +168,16 @@
       <section class="notes">
         <h2>Metric Notes</h2>
         <p>
+          Draft pull requests are excluded from every PR metric: the open PR
+          total, daily opened/closed/merged counts, net change, and the
+          end-of-day open backlog. A day can start at any hour; by default it
+          starts at 00:00 in Asia/Shanghai (UTC+8). Pick a timezone and a
+          day-start hour in the toolbar and the PR charts, table, and KPIs are
+          re-bucketed in your browser — the choice is saved locally and reused
+          on your next visit. Cumulative Stars/Forks/Contributors lines follow
+          the data collector's timezone (Asia/Shanghai midnight).
+        </p>
+        <p>
           PR backlog is reconstructed from PR creation and close timestamps.
           Stars and forks use currently existing GitHub objects, so removed stars
           and deleted forks are not visible in the public API history. Some fork
@@ -173,6 +192,7 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
-    <script src="assets/app.js?v=20260923-1"></script>
+    <script src="assets/day-window.js?v=20261027-1"></script>
+    <script src="assets/app.js?v=20261027-1"></script>
   </body>
 </html>
