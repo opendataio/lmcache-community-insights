@@ -9708,11 +9708,11 @@
       "date": "2026-10-26",
       "forks_total": 2068,
       "github_contributors_total": 419,
-      "pr_net": 8,
+      "pr_net": 7,
       "prs_closed": 11,
       "prs_merged": 6,
-      "prs_open_eod": 492,
-      "prs_opened": 19,
+      "prs_open_eod": 491,
+      "prs_opened": 18,
       "stars_total": 12164
     },
     {
@@ -9723,7 +9723,7 @@
       "pr_net": 6,
       "prs_closed": 19,
       "prs_merged": 14,
-      "prs_open_eod": 498,
+      "prs_open_eod": 497,
       "prs_opened": 25,
       "stars_total": 12180
     },
@@ -9732,11 +9732,11 @@
       "date": "2026-10-28",
       "forks_total": 2083,
       "github_contributors_total": 420,
-      "pr_net": -1,
+      "pr_net": 0,
       "prs_closed": 21,
       "prs_merged": 18,
       "prs_open_eod": 497,
-      "prs_opened": 20,
+      "prs_opened": 21,
       "stars_total": 12185
     },
     {
@@ -9780,12 +9780,24 @@
       "date": "2026-11-01",
       "forks_total": 2106,
       "github_contributors_total": 424,
-      "pr_net": 0,
-      "prs_closed": 0,
-      "prs_merged": 0,
-      "prs_open_eod": 475,
-      "prs_opened": 0,
+      "pr_net": -3,
+      "prs_closed": 6,
+      "prs_merged": 3,
+      "prs_open_eod": 472,
+      "prs_opened": 3,
       "stars_total": 12251
+    },
+    {
+      "contributors_total": 395,
+      "date": "2026-11-02",
+      "forks_total": 2111,
+      "github_contributors_total": 424,
+      "pr_net": -2,
+      "prs_closed": 3,
+      "prs_merged": 1,
+      "prs_open_eod": 470,
+      "prs_opened": 1,
+      "stars_total": 12256
     }
   ],
   "events": {
@@ -23556,7 +23568,7 @@
         "merged_at": "2026-07-10T03:07:31Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-01T01:38:33Z",
         "created_at": "2026-07-09T13:13:27Z",
         "merged_at": null
       },
@@ -23596,7 +23608,7 @@
         "merged_at": "2026-07-23T17:49:53Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-01T01:38:30Z",
         "created_at": "2026-07-10T06:23:15Z",
         "merged_at": null
       },
@@ -24901,7 +24913,7 @@
         "merged_at": "2026-09-11T00:40:05Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-01T09:45:35Z",
         "created_at": "2026-08-09T01:01:39Z",
         "merged_at": null
       },
@@ -26481,7 +26493,7 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-01T19:54:39Z",
         "created_at": "2026-09-03T17:55:40Z",
         "merged_at": null
       },
@@ -26531,7 +26543,7 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-01T19:54:41Z",
         "created_at": "2026-09-03T22:45:46Z",
         "merged_at": null
       },
@@ -30236,9 +30248,9 @@
         "merged_at": "2026-10-27T04:58:47Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-01T02:11:21Z",
         "created_at": "2026-10-26T01:51:08Z",
-        "merged_at": null
+        "merged_at": "2026-11-01T02:11:21Z"
       },
       {
         "closed_at": "2026-10-26T07:07:20Z",
@@ -30286,14 +30298,9 @@
         "merged_at": "2026-10-26T19:57:06Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-01T02:37:52Z",
         "created_at": "2026-10-26T07:26:41Z",
-        "merged_at": null
-      },
-      {
-        "closed_at": null,
-        "created_at": "2026-10-26T07:30:55Z",
-        "merged_at": null
+        "merged_at": "2026-11-01T02:37:52Z"
       },
       {
         "closed_at": null,
@@ -30474,6 +30481,11 @@
         "closed_at": "2026-10-28T02:37:04Z",
         "created_at": "2026-10-27T22:00:21Z",
         "merged_at": "2026-10-28T02:37:04Z"
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-10-28T00:36:25Z",
+        "merged_at": null
       },
       {
         "closed_at": "2026-10-29T22:07:15Z",
@@ -30724,19 +30736,39 @@
         "closed_at": null,
         "created_at": "2026-10-31T14:44:11Z",
         "merged_at": null
+      },
+      {
+        "closed_at": "2026-11-01T21:26:09Z",
+        "created_at": "2026-11-01T03:03:36Z",
+        "merged_at": "2026-11-01T21:26:08Z"
+      },
+      {
+        "closed_at": "2026-11-01T09:28:41Z",
+        "created_at": "2026-11-01T04:41:59Z",
+        "merged_at": "2026-11-01T09:28:41Z"
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-01T07:19:50Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-01T20:23:23Z",
+        "merged_at": null
       }
     ]
   },
   "excludes_drafts": true,
-  "generated_at": "2026-10-31T21:38:50.360914Z",
+  "generated_at": "2026-11-01T22:05:22.195969Z",
   "repository": "LMCache/LMCache",
   "summary": {
     "current_contributors": 424,
-    "current_forks": 2106,
-    "current_open_prs": 475,
-    "current_stars": 12251,
+    "current_forks": 2111,
+    "current_open_prs": 470,
+    "current_stars": 12256,
     "estimated_contributors": 395,
-    "untracked_forks": 234,
+    "untracked_forks": 239,
     "visible_forks_tracked": 1872
   },
   "timezone": "Asia/Shanghai"
