@@ -9576,11 +9576,11 @@
       "date": "2026-10-15",
       "forks_total": 2029,
       "github_contributors_total": 399,
-      "pr_net": 4,
+      "pr_net": 5,
       "prs_closed": 21,
       "prs_merged": 20,
-      "prs_open_eod": 474,
-      "prs_opened": 25,
+      "prs_open_eod": 475,
+      "prs_opened": 26,
       "stars_total": 12068
     },
     {
@@ -9591,7 +9591,7 @@
       "pr_net": 14,
       "prs_closed": 8,
       "prs_merged": 6,
-      "prs_open_eod": 488,
+      "prs_open_eod": 489,
       "prs_opened": 22,
       "stars_total": 12088
     },
@@ -9603,7 +9603,7 @@
       "pr_net": 2,
       "prs_closed": 11,
       "prs_merged": 8,
-      "prs_open_eod": 490,
+      "prs_open_eod": 491,
       "prs_opened": 13,
       "stars_total": 12100
     },
@@ -9615,7 +9615,7 @@
       "pr_net": 0,
       "prs_closed": 8,
       "prs_merged": 7,
-      "prs_open_eod": 490,
+      "prs_open_eod": 491,
       "prs_opened": 8,
       "stars_total": 12105
     },
@@ -9627,7 +9627,7 @@
       "pr_net": 3,
       "prs_closed": 13,
       "prs_merged": 9,
-      "prs_open_eod": 493,
+      "prs_open_eod": 494,
       "prs_opened": 16,
       "stars_total": 12108
     },
@@ -9636,11 +9636,11 @@
       "date": "2026-10-20",
       "forks_total": 2158,
       "github_contributors_total": 406,
-      "pr_net": 6,
+      "pr_net": 7,
       "prs_closed": 21,
       "prs_merged": 15,
-      "prs_open_eod": 499,
-      "prs_opened": 27,
+      "prs_open_eod": 501,
+      "prs_opened": 28,
       "stars_total": 12120
     },
     {
@@ -9651,7 +9651,7 @@
       "pr_net": -1,
       "prs_closed": 29,
       "prs_merged": 20,
-      "prs_open_eod": 498,
+      "prs_open_eod": 500,
       "prs_opened": 28,
       "stars_total": 12130
     },
@@ -9663,7 +9663,7 @@
       "pr_net": -25,
       "prs_closed": 41,
       "prs_merged": 32,
-      "prs_open_eod": 473,
+      "prs_open_eod": 475,
       "prs_opened": 16,
       "stars_total": 12143
     },
@@ -9675,7 +9675,7 @@
       "pr_net": 9,
       "prs_closed": 13,
       "prs_merged": 7,
-      "prs_open_eod": 482,
+      "prs_open_eod": 484,
       "prs_opened": 22,
       "stars_total": 12152
     },
@@ -9687,7 +9687,7 @@
       "pr_net": 6,
       "prs_closed": 12,
       "prs_merged": 8,
-      "prs_open_eod": 488,
+      "prs_open_eod": 490,
       "prs_opened": 18,
       "stars_total": 12156
     },
@@ -9699,7 +9699,7 @@
       "pr_net": 0,
       "prs_closed": 8,
       "prs_merged": 7,
-      "prs_open_eod": 488,
+      "prs_open_eod": 490,
       "prs_opened": 8,
       "stars_total": 12159
     },
@@ -9708,11 +9708,11 @@
       "date": "2026-10-26",
       "forks_total": 2068,
       "github_contributors_total": 419,
-      "pr_net": 9,
+      "pr_net": 10,
       "prs_closed": 11,
       "prs_merged": 6,
-      "prs_open_eod": 497,
-      "prs_opened": 20,
+      "prs_open_eod": 500,
+      "prs_opened": 21,
       "stars_total": 12164
     },
     {
@@ -9723,7 +9723,7 @@
       "pr_net": 6,
       "prs_closed": 19,
       "prs_merged": 14,
-      "prs_open_eod": 503,
+      "prs_open_eod": 506,
       "prs_opened": 25,
       "stars_total": 12180
     },
@@ -9732,11 +9732,11 @@
       "date": "2026-10-28",
       "forks_total": 2083,
       "github_contributors_total": 420,
-      "pr_net": 2,
+      "pr_net": 3,
       "prs_closed": 21,
       "prs_merged": 18,
-      "prs_open_eod": 505,
-      "prs_opened": 23,
+      "prs_open_eod": 509,
+      "prs_opened": 24,
       "stars_total": 12185
     },
     {
@@ -9747,7 +9747,7 @@
       "pr_net": -14,
       "prs_closed": 31,
       "prs_merged": 19,
-      "prs_open_eod": 491,
+      "prs_open_eod": 495,
       "prs_opened": 17,
       "stars_total": 12209
     },
@@ -9759,7 +9759,7 @@
       "pr_net": 7,
       "prs_closed": 11,
       "prs_merged": 11,
-      "prs_open_eod": 498,
+      "prs_open_eod": 502,
       "prs_opened": 18,
       "stars_total": 12229
     },
@@ -9771,7 +9771,7 @@
       "pr_net": -7,
       "prs_closed": 15,
       "prs_merged": 10,
-      "prs_open_eod": 491,
+      "prs_open_eod": 495,
       "prs_opened": 8,
       "stars_total": 12242
     },
@@ -9783,7 +9783,7 @@
       "pr_net": -2,
       "prs_closed": 6,
       "prs_merged": 3,
-      "prs_open_eod": 489,
+      "prs_open_eod": 493,
       "prs_opened": 4,
       "stars_total": 12251
     },
@@ -9795,7 +9795,7 @@
       "pr_net": -5,
       "prs_closed": 16,
       "prs_merged": 10,
-      "prs_open_eod": 484,
+      "prs_open_eod": 488,
       "prs_opened": 11,
       "stars_total": 12256
     },
@@ -9807,7 +9807,7 @@
       "pr_net": 0,
       "prs_closed": 10,
       "prs_merged": 8,
-      "prs_open_eod": 484,
+      "prs_open_eod": 488,
       "prs_opened": 10,
       "stars_total": 12262
     },
@@ -9819,7 +9819,7 @@
       "pr_net": -5,
       "prs_closed": 26,
       "prs_merged": 21,
-      "prs_open_eod": 479,
+      "prs_open_eod": 483,
       "prs_opened": 21,
       "stars_total": 12271
     },
@@ -9828,24 +9828,36 @@
       "date": "2026-11-05",
       "forks_total": 2128,
       "github_contributors_total": 434,
-      "pr_net": -7,
+      "pr_net": -2,
       "prs_closed": 28,
       "prs_merged": 20,
-      "prs_open_eod": 472,
-      "prs_opened": 21,
+      "prs_open_eod": 481,
+      "prs_opened": 26,
       "stars_total": 12278
     },
     {
-      "contributors_total": 408,
+      "contributors_total": 409,
       "date": "2026-11-06",
       "forks_total": 2132,
       "github_contributors_total": 437,
-      "pr_net": 2,
-      "prs_closed": 5,
-      "prs_merged": 2,
-      "prs_open_eod": 474,
-      "prs_opened": 7,
+      "pr_net": 4,
+      "prs_closed": 18,
+      "prs_merged": 13,
+      "prs_open_eod": 485,
+      "prs_opened": 22,
       "stars_total": 12289
+    },
+    {
+      "contributors_total": 409,
+      "date": "2026-11-07",
+      "forks_total": 2139,
+      "github_contributors_total": 438,
+      "pr_net": 1,
+      "prs_closed": 4,
+      "prs_merged": 2,
+      "prs_open_eod": 486,
+      "prs_opened": 5,
+      "stars_total": 12301
     }
   ],
   "events": {
@@ -24931,7 +24943,7 @@
         "merged_at": "2026-08-15T06:24:41Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-06T03:37:34Z",
         "created_at": "2026-08-07T20:15:49Z",
         "merged_at": null
       },
@@ -26156,9 +26168,9 @@
         "merged_at": "2026-09-02T00:05:28Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-06T02:08:43Z",
         "created_at": "2026-08-29T14:42:13Z",
-        "merged_at": null
+        "merged_at": "2026-11-06T02:08:43Z"
       },
       {
         "closed_at": "2026-09-01T03:01:30Z",
@@ -29382,6 +29394,11 @@
       },
       {
         "closed_at": null,
+        "created_at": "2026-10-15T11:23:27Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
         "created_at": "2026-10-15T11:30:21Z",
         "merged_at": null
       },
@@ -29768,6 +29785,11 @@
       {
         "closed_at": null,
         "created_at": "2026-10-19T22:40:55Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-10-19T23:32:22Z",
         "merged_at": null
       },
       {
@@ -30387,6 +30409,11 @@
       },
       {
         "closed_at": null,
+        "created_at": "2026-10-26T11:36:26Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
         "created_at": "2026-10-26T11:38:20Z",
         "merged_at": null
       },
@@ -30593,6 +30620,11 @@
       {
         "closed_at": null,
         "created_at": "2026-10-28T03:33:28Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-10-28T04:37:24Z",
         "merged_at": null
       },
       {
@@ -30936,9 +30968,9 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-06T05:07:36Z",
         "created_at": "2026-11-02T12:08:41Z",
-        "merged_at": null
+        "merged_at": "2026-11-06T05:07:36Z"
       },
       {
         "closed_at": null,
@@ -30956,9 +30988,9 @@
         "merged_at": "2026-11-03T20:51:28Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-06T11:13:03Z",
         "created_at": "2026-11-03T04:33:44Z",
-        "merged_at": null
+        "merged_at": "2026-11-06T11:13:03Z"
       },
       {
         "closed_at": "2026-11-03T08:39:09Z",
@@ -31061,9 +31093,9 @@
         "merged_at": "2026-11-05T08:28:45Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-06T08:34:59Z",
         "created_at": "2026-11-04T08:11:35Z",
-        "merged_at": null
+        "merged_at": "2026-11-06T08:34:59Z"
       },
       {
         "closed_at": "2026-11-05T15:44:47Z",
@@ -31146,9 +31178,9 @@
         "merged_at": "2026-11-05T04:35:00Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-06T05:19:35Z",
         "created_at": "2026-11-05T02:45:58Z",
-        "merged_at": null
+        "merged_at": "2026-11-06T05:19:34Z"
       },
       {
         "closed_at": null,
@@ -31197,8 +31229,33 @@
       },
       {
         "closed_at": null,
-        "created_at": "2026-11-05T15:21:01Z",
+        "created_at": "2026-11-05T10:18:50Z",
         "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-05T14:15:34Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-05T14:15:39Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-05T14:15:43Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-05T14:40:40Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": "2026-11-06T01:24:11Z",
+        "created_at": "2026-11-05T15:21:01Z",
+        "merged_at": "2026-11-06T01:24:11Z"
       },
       {
         "closed_at": null,
@@ -31206,8 +31263,13 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-06T00:40:08Z",
         "created_at": "2026-11-05T19:56:21Z",
+        "merged_at": "2026-11-06T00:40:08Z"
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-05T21:01:46Z",
         "merged_at": null
       },
       {
@@ -31226,27 +31288,122 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-06T18:48:12Z",
         "created_at": "2026-11-05T23:35:52Z",
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-06T18:48:19Z",
         "created_at": "2026-11-05T23:35:57Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-06T00:07:01Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": "2026-11-06T01:56:40Z",
+        "created_at": "2026-11-06T00:22:20Z",
+        "merged_at": "2026-11-06T01:56:39Z"
+      },
+      {
+        "closed_at": "2026-11-06T06:30:19Z",
+        "created_at": "2026-11-06T00:36:41Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-06T00:53:33Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": "2026-11-06T05:20:41Z",
+        "created_at": "2026-11-06T01:12:54Z",
+        "merged_at": "2026-11-06T05:20:41Z"
+      },
+      {
+        "closed_at": "2026-11-06T11:51:49Z",
+        "created_at": "2026-11-06T05:34:02Z",
+        "merged_at": "2026-11-06T11:51:49Z"
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-06T06:11:28Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": "2026-11-06T09:32:57Z",
+        "created_at": "2026-11-06T06:40:22Z",
+        "merged_at": "2026-11-06T09:32:57Z"
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-06T07:28:23Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-06T09:01:13Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-06T10:28:55Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-06T13:25:53Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-06T14:01:31Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": "2026-11-06T22:56:21Z",
+        "created_at": "2026-11-06T14:36:09Z",
+        "merged_at": "2026-11-06T22:56:21Z"
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-06T19:22:40Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": "2026-11-06T21:24:51Z",
+        "created_at": "2026-11-06T20:05:45Z",
+        "merged_at": "2026-11-06T21:24:51Z"
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-06T20:39:37Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-06T21:32:59Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-06T21:57:30Z",
         "merged_at": null
       }
     ]
   },
   "excludes_drafts": true,
-  "generated_at": "2026-11-05T23:40:29.640661Z",
+  "generated_at": "2026-11-06T23:12:34.890321Z",
   "repository": "LMCache/LMCache",
   "summary": {
-    "current_contributors": 437,
-    "current_forks": 2132,
-    "current_open_prs": 474,
-    "current_stars": 12289,
-    "estimated_contributors": 408,
-    "untracked_forks": 260,
+    "current_contributors": 438,
+    "current_forks": 2139,
+    "current_open_prs": 486,
+    "current_stars": 12301,
+    "estimated_contributors": 409,
+    "untracked_forks": 267,
     "visible_forks_tracked": 1872
   },
   "timezone": "Asia/Shanghai"
