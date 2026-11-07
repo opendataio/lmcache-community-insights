@@ -9540,11 +9540,11 @@
       "date": "2026-10-12",
       "forks_total": 2008,
       "github_contributors_total": 387,
-      "pr_net": -6,
+      "pr_net": -7,
       "prs_closed": 12,
       "prs_merged": 6,
-      "prs_open_eod": 465,
-      "prs_opened": 6,
+      "prs_open_eod": 464,
+      "prs_opened": 5,
       "stars_total": 12001
     },
     {
@@ -9555,7 +9555,7 @@
       "pr_net": 5,
       "prs_closed": 14,
       "prs_merged": 9,
-      "prs_open_eod": 470,
+      "prs_open_eod": 469,
       "prs_opened": 19,
       "stars_total": 12007
     },
@@ -9567,7 +9567,7 @@
       "pr_net": 0,
       "prs_closed": 29,
       "prs_merged": 19,
-      "prs_open_eod": 470,
+      "prs_open_eod": 469,
       "prs_opened": 29,
       "stars_total": 12037
     },
@@ -9579,7 +9579,7 @@
       "pr_net": 5,
       "prs_closed": 21,
       "prs_merged": 20,
-      "prs_open_eod": 475,
+      "prs_open_eod": 474,
       "prs_opened": 26,
       "stars_total": 12068
     },
@@ -9591,7 +9591,7 @@
       "pr_net": 14,
       "prs_closed": 8,
       "prs_merged": 6,
-      "prs_open_eod": 489,
+      "prs_open_eod": 488,
       "prs_opened": 22,
       "stars_total": 12088
     },
@@ -9603,7 +9603,7 @@
       "pr_net": 2,
       "prs_closed": 11,
       "prs_merged": 8,
-      "prs_open_eod": 491,
+      "prs_open_eod": 490,
       "prs_opened": 13,
       "stars_total": 12100
     },
@@ -9615,7 +9615,7 @@
       "pr_net": 0,
       "prs_closed": 8,
       "prs_merged": 7,
-      "prs_open_eod": 491,
+      "prs_open_eod": 490,
       "prs_opened": 8,
       "stars_total": 12105
     },
@@ -9627,7 +9627,7 @@
       "pr_net": 3,
       "prs_closed": 13,
       "prs_merged": 9,
-      "prs_open_eod": 494,
+      "prs_open_eod": 493,
       "prs_opened": 16,
       "stars_total": 12108
     },
@@ -9639,7 +9639,7 @@
       "pr_net": 7,
       "prs_closed": 21,
       "prs_merged": 15,
-      "prs_open_eod": 501,
+      "prs_open_eod": 500,
       "prs_opened": 28,
       "stars_total": 12120
     },
@@ -9651,7 +9651,7 @@
       "pr_net": -1,
       "prs_closed": 29,
       "prs_merged": 20,
-      "prs_open_eod": 500,
+      "prs_open_eod": 499,
       "prs_opened": 28,
       "stars_total": 12130
     },
@@ -9663,7 +9663,7 @@
       "pr_net": -25,
       "prs_closed": 41,
       "prs_merged": 32,
-      "prs_open_eod": 475,
+      "prs_open_eod": 474,
       "prs_opened": 16,
       "stars_total": 12143
     },
@@ -9675,7 +9675,7 @@
       "pr_net": 9,
       "prs_closed": 13,
       "prs_merged": 7,
-      "prs_open_eod": 484,
+      "prs_open_eod": 483,
       "prs_opened": 22,
       "stars_total": 12152
     },
@@ -9687,7 +9687,7 @@
       "pr_net": 6,
       "prs_closed": 12,
       "prs_merged": 8,
-      "prs_open_eod": 490,
+      "prs_open_eod": 489,
       "prs_opened": 18,
       "stars_total": 12156
     },
@@ -9699,7 +9699,7 @@
       "pr_net": 0,
       "prs_closed": 8,
       "prs_merged": 7,
-      "prs_open_eod": 490,
+      "prs_open_eod": 489,
       "prs_opened": 8,
       "stars_total": 12159
     },
@@ -9711,7 +9711,7 @@
       "pr_net": 10,
       "prs_closed": 11,
       "prs_merged": 6,
-      "prs_open_eod": 500,
+      "prs_open_eod": 499,
       "prs_opened": 21,
       "stars_total": 12164
     },
@@ -9723,7 +9723,7 @@
       "pr_net": 6,
       "prs_closed": 19,
       "prs_merged": 14,
-      "prs_open_eod": 506,
+      "prs_open_eod": 505,
       "prs_opened": 25,
       "stars_total": 12180
     },
@@ -9735,7 +9735,7 @@
       "pr_net": 3,
       "prs_closed": 21,
       "prs_merged": 18,
-      "prs_open_eod": 509,
+      "prs_open_eod": 508,
       "prs_opened": 24,
       "stars_total": 12185
     },
@@ -9747,7 +9747,7 @@
       "pr_net": -14,
       "prs_closed": 31,
       "prs_merged": 19,
-      "prs_open_eod": 495,
+      "prs_open_eod": 494,
       "prs_opened": 17,
       "stars_total": 12209
     },
@@ -9759,7 +9759,7 @@
       "pr_net": 7,
       "prs_closed": 11,
       "prs_merged": 11,
-      "prs_open_eod": 502,
+      "prs_open_eod": 501,
       "prs_opened": 18,
       "stars_total": 12229
     },
@@ -9771,7 +9771,7 @@
       "pr_net": -7,
       "prs_closed": 15,
       "prs_merged": 10,
-      "prs_open_eod": 495,
+      "prs_open_eod": 494,
       "prs_opened": 8,
       "stars_total": 12242
     },
@@ -9783,7 +9783,7 @@
       "pr_net": -2,
       "prs_closed": 6,
       "prs_merged": 3,
-      "prs_open_eod": 493,
+      "prs_open_eod": 492,
       "prs_opened": 4,
       "stars_total": 12251
     },
@@ -9795,7 +9795,7 @@
       "pr_net": -5,
       "prs_closed": 16,
       "prs_merged": 10,
-      "prs_open_eod": 488,
+      "prs_open_eod": 487,
       "prs_opened": 11,
       "stars_total": 12256
     },
@@ -9807,7 +9807,7 @@
       "pr_net": 0,
       "prs_closed": 10,
       "prs_merged": 8,
-      "prs_open_eod": 488,
+      "prs_open_eod": 487,
       "prs_opened": 10,
       "stars_total": 12262
     },
@@ -9819,7 +9819,7 @@
       "pr_net": -5,
       "prs_closed": 26,
       "prs_merged": 21,
-      "prs_open_eod": 483,
+      "prs_open_eod": 482,
       "prs_opened": 21,
       "stars_total": 12271
     },
@@ -9831,7 +9831,7 @@
       "pr_net": -2,
       "prs_closed": 28,
       "prs_merged": 20,
-      "prs_open_eod": 481,
+      "prs_open_eod": 480,
       "prs_opened": 26,
       "stars_total": 12278
     },
@@ -9840,24 +9840,36 @@
       "date": "2026-11-06",
       "forks_total": 2132,
       "github_contributors_total": 437,
-      "pr_net": 4,
+      "pr_net": 6,
       "prs_closed": 18,
       "prs_merged": 13,
-      "prs_open_eod": 485,
-      "prs_opened": 22,
+      "prs_open_eod": 486,
+      "prs_opened": 24,
       "stars_total": 12289
     },
     {
-      "contributors_total": 409,
+      "contributors_total": 410,
       "date": "2026-11-07",
       "forks_total": 2139,
       "github_contributors_total": 438,
-      "pr_net": 1,
-      "prs_closed": 4,
-      "prs_merged": 2,
-      "prs_open_eod": 486,
-      "prs_opened": 5,
+      "pr_net": -5,
+      "prs_closed": 19,
+      "prs_merged": 6,
+      "prs_open_eod": 481,
+      "prs_opened": 14,
       "stars_total": 12301
+    },
+    {
+      "contributors_total": 410,
+      "date": "2026-11-08",
+      "forks_total": 2143,
+      "github_contributors_total": 439,
+      "pr_net": 1,
+      "prs_closed": 0,
+      "prs_merged": 0,
+      "prs_open_eod": 482,
+      "prs_opened": 1,
+      "stars_total": 12307
     }
   ],
   "events": {
@@ -26488,22 +26500,22 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-07T14:01:36Z",
         "created_at": "2026-09-03T04:22:36Z",
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-07T14:01:40Z",
         "created_at": "2026-09-03T04:36:04Z",
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-07T14:01:44Z",
         "created_at": "2026-09-03T04:52:37Z",
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-07T14:01:17Z",
         "created_at": "2026-09-03T06:26:02Z",
         "merged_at": null
       },
@@ -26513,7 +26525,7 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-07T14:01:21Z",
         "created_at": "2026-09-03T07:58:44Z",
         "merged_at": null
       },
@@ -26528,7 +26540,7 @@
         "merged_at": "2026-09-04T13:43:13Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-07T14:01:24Z",
         "created_at": "2026-09-03T16:35:57Z",
         "merged_at": null
       },
@@ -26573,7 +26585,7 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-07T14:01:28Z",
         "created_at": "2026-09-03T18:48:24Z",
         "merged_at": null
       },
@@ -26613,7 +26625,7 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-07T14:01:32Z",
         "created_at": "2026-09-03T23:33:21Z",
         "merged_at": null
       },
@@ -29063,11 +29075,6 @@
         "merged_at": "2026-10-28T02:19:03Z"
       },
       {
-        "closed_at": null,
-        "created_at": "2026-10-12T12:22:58Z",
-        "merged_at": null
-      },
-      {
         "closed_at": "2026-10-12T20:28:12Z",
         "created_at": "2026-10-12T18:25:40Z",
         "merged_at": "2026-10-12T20:28:12Z"
@@ -29718,9 +29725,9 @@
         "merged_at": "2026-10-21T06:29:28Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-07T05:43:57Z",
         "created_at": "2026-10-19T11:36:13Z",
-        "merged_at": null
+        "merged_at": "2026-11-07T05:43:57Z"
       },
       {
         "closed_at": null,
@@ -30098,9 +30105,9 @@
         "merged_at": "2026-10-23T02:33:48Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-07T15:49:05Z",
         "created_at": "2026-10-22T17:17:18Z",
-        "merged_at": null
+        "merged_at": "2026-11-07T15:49:05Z"
       },
       {
         "closed_at": null,
@@ -30623,7 +30630,7 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-07T01:52:04Z",
         "created_at": "2026-10-28T04:37:24Z",
         "merged_at": null
       },
@@ -31338,9 +31345,9 @@
         "merged_at": "2026-11-06T09:32:57Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-07T01:14:34Z",
         "created_at": "2026-11-06T07:28:23Z",
-        "merged_at": null
+        "merged_at": "2026-11-07T01:14:34Z"
       },
       {
         "closed_at": null,
@@ -31358,8 +31365,18 @@
         "merged_at": null
       },
       {
+        "closed_at": "2026-11-07T15:21:25Z",
+        "created_at": "2026-11-06T13:48:48Z",
+        "merged_at": "2026-11-07T15:21:25Z"
+      },
+      {
         "closed_at": null,
         "created_at": "2026-11-06T14:01:31Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-06T14:07:56Z",
         "merged_at": null
       },
       {
@@ -31391,19 +31408,69 @@
         "closed_at": null,
         "created_at": "2026-11-06T21:57:30Z",
         "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-07T00:46:45Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-07T01:16:13Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-07T02:52:25Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-07T03:18:03Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": "2026-11-07T03:43:37Z",
+        "created_at": "2026-11-07T03:42:17Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-07T08:47:47Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-07T09:22:19Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": "2026-11-07T13:35:46Z",
+        "created_at": "2026-11-07T12:12:39Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-07T14:26:37Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-07T20:25:37Z",
+        "merged_at": null
       }
     ]
   },
   "excludes_drafts": true,
-  "generated_at": "2026-11-06T23:12:34.890321Z",
+  "generated_at": "2026-11-07T21:54:25.618731Z",
   "repository": "LMCache/LMCache",
   "summary": {
-    "current_contributors": 438,
-    "current_forks": 2139,
-    "current_open_prs": 486,
-    "current_stars": 12301,
-    "estimated_contributors": 409,
-    "untracked_forks": 267,
+    "current_contributors": 439,
+    "current_forks": 2143,
+    "current_open_prs": 482,
+    "current_stars": 12307,
+    "estimated_contributors": 410,
+    "untracked_forks": 271,
     "visible_forks_tracked": 1872
   },
   "timezone": "Asia/Shanghai"
