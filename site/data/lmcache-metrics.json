@@ -9936,12 +9936,24 @@
       "date": "2026-11-14",
       "forks_total": 2162,
       "github_contributors_total": 449,
-      "pr_net": -1,
-      "prs_closed": 3,
-      "prs_merged": 1,
-      "prs_open_eod": 472,
-      "prs_opened": 2,
+      "pr_net": 0,
+      "prs_closed": 10,
+      "prs_merged": 7,
+      "prs_open_eod": 473,
+      "prs_opened": 10,
       "stars_total": 12359
+    },
+    {
+      "contributors_total": 420,
+      "date": "2026-11-15",
+      "forks_total": 2165,
+      "github_contributors_total": 449,
+      "pr_net": 3,
+      "prs_closed": 0,
+      "prs_merged": 0,
+      "prs_open_eod": 476,
+      "prs_opened": 3,
+      "stars_total": 12363
     }
   ],
   "events": {
@@ -25437,7 +25449,7 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-14T01:50:48Z",
         "created_at": "2026-08-14T20:10:12Z",
         "merged_at": null
       },
@@ -31222,9 +31234,9 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-14T01:17:10Z",
         "created_at": "2026-11-05T01:01:37Z",
-        "merged_at": null
+        "merged_at": "2026-11-14T01:17:10Z"
       },
       {
         "closed_at": "2026-11-09T01:34:07Z",
@@ -32022,9 +32034,9 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-13T23:53:18Z",
         "created_at": "2026-11-11T23:09:44Z",
-        "merged_at": null
+        "merged_at": "2026-11-13T23:53:18Z"
       },
       {
         "closed_at": "2026-11-12T11:28:16Z",
@@ -32097,9 +32109,9 @@
         "merged_at": "2026-11-13T02:23:50Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-14T04:18:45Z",
         "created_at": "2026-11-13T01:48:25Z",
-        "merged_at": null
+        "merged_at": "2026-11-14T04:18:45Z"
       },
       {
         "closed_at": "2026-11-13T02:19:46Z",
@@ -32117,9 +32129,9 @@
         "merged_at": "2026-11-13T06:11:14Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-14T04:25:44Z",
         "created_at": "2026-11-13T06:43:52Z",
-        "merged_at": null
+        "merged_at": "2026-11-14T04:25:44Z"
       },
       {
         "closed_at": "2026-11-13T07:54:02Z",
@@ -32127,9 +32139,9 @@
         "merged_at": "2026-11-13T07:54:02Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-14T03:28:02Z",
         "created_at": "2026-11-13T10:24:27Z",
-        "merged_at": null
+        "merged_at": "2026-11-14T03:28:02Z"
       },
       {
         "closed_at": null,
@@ -32150,19 +32162,74 @@
         "closed_at": null,
         "created_at": "2026-11-13T23:06:33Z",
         "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-13T23:23:50Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": "2026-11-14T00:39:27Z",
+        "created_at": "2026-11-13T23:29:35Z",
+        "merged_at": "2026-11-14T00:39:27Z"
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-13T23:50:37Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-14T01:04:24Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-14T01:50:14Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-14T06:01:04Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-14T07:51:02Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-14T13:34:28Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-14T16:41:06Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-14T17:00:25Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-14T18:07:44Z",
+        "merged_at": null
       }
     ]
   },
   "excludes_drafts": true,
-  "generated_at": "2026-11-13T23:37:01.260776Z",
+  "generated_at": "2026-11-14T22:28:58.595397Z",
   "repository": "LMCache/LMCache",
   "summary": {
     "current_contributors": 449,
-    "current_forks": 2162,
-    "current_open_prs": 472,
-    "current_stars": 12359,
+    "current_forks": 2165,
+    "current_open_prs": 476,
+    "current_stars": 12363,
     "estimated_contributors": 420,
-    "untracked_forks": 290,
+    "untracked_forks": 293,
     "visible_forks_tracked": 1872
   },
   "timezone": "Asia/Shanghai"
