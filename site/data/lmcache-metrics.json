@@ -9256,22 +9256,22 @@
       "contributors_total": 320,
       "date": "2026-09-18",
       "forks_total": 1901,
-      "pr_net": 8,
+      "pr_net": 6,
       "prs_closed": 19,
       "prs_merged": 13,
-      "prs_open_eod": 431,
-      "prs_opened": 27,
+      "prs_open_eod": 429,
+      "prs_opened": 25,
       "stars_total": 11849
     },
     {
       "contributors_total": 320,
       "date": "2026-09-19",
       "forks_total": 1914,
-      "pr_net": 13,
+      "pr_net": 10,
       "prs_closed": 13,
       "prs_merged": 8,
-      "prs_open_eod": 444,
-      "prs_opened": 26,
+      "prs_open_eod": 439,
+      "prs_opened": 23,
       "stars_total": 11861
     },
     {
@@ -9281,7 +9281,7 @@
       "pr_net": 3,
       "prs_closed": 3,
       "prs_merged": 2,
-      "prs_open_eod": 447,
+      "prs_open_eod": 442,
       "prs_opened": 6,
       "stars_total": 11867
     },
@@ -9292,7 +9292,7 @@
       "pr_net": 6,
       "prs_closed": 6,
       "prs_merged": 5,
-      "prs_open_eod": 453,
+      "prs_open_eod": 448,
       "prs_opened": 12,
       "stars_total": 11875
     },
@@ -9303,7 +9303,7 @@
       "pr_net": -2,
       "prs_closed": 16,
       "prs_merged": 11,
-      "prs_open_eod": 451,
+      "prs_open_eod": 446,
       "prs_opened": 14,
       "stars_total": 11885
     },
@@ -9312,10 +9312,10 @@
       "date": "2026-09-23",
       "forks_total": 1944,
       "github_contributors_total": 355,
-      "pr_net": -3,
-      "prs_closed": 17,
-      "prs_merged": 10,
-      "prs_open_eod": 448,
+      "pr_net": -2,
+      "prs_closed": 16,
+      "prs_merged": 9,
+      "prs_open_eod": 444,
       "prs_opened": 14,
       "stars_total": 11890
     },
@@ -9327,7 +9327,7 @@
       "pr_net": -7,
       "prs_closed": 19,
       "prs_merged": 17,
-      "prs_open_eod": 441,
+      "prs_open_eod": 437,
       "prs_opened": 12,
       "stars_total": 11897
     },
@@ -9339,7 +9339,7 @@
       "pr_net": -7,
       "prs_closed": 12,
       "prs_merged": 3,
-      "prs_open_eod": 434,
+      "prs_open_eod": 430,
       "prs_opened": 5,
       "stars_total": 11903
     },
@@ -9351,7 +9351,7 @@
       "pr_net": 4,
       "prs_closed": 13,
       "prs_merged": 4,
-      "prs_open_eod": 438,
+      "prs_open_eod": 434,
       "prs_opened": 17,
       "stars_total": 11908
     },
@@ -9363,7 +9363,7 @@
       "pr_net": -1,
       "prs_closed": 3,
       "prs_merged": 2,
-      "prs_open_eod": 437,
+      "prs_open_eod": 433,
       "prs_opened": 2,
       "stars_total": 11912
     },
@@ -9375,7 +9375,7 @@
       "pr_net": -8,
       "prs_closed": 19,
       "prs_merged": 8,
-      "prs_open_eod": 429,
+      "prs_open_eod": 425,
       "prs_opened": 11,
       "stars_total": 11923
     },
@@ -9384,10 +9384,10 @@
       "date": "2026-09-29",
       "forks_total": 1964,
       "github_contributors_total": 365,
-      "pr_net": -15,
-      "prs_closed": 27,
+      "pr_net": -13,
+      "prs_closed": 25,
       "prs_merged": 15,
-      "prs_open_eod": 414,
+      "prs_open_eod": 412,
       "prs_opened": 12,
       "stars_total": 11932
     },
@@ -9399,7 +9399,7 @@
       "pr_net": -6,
       "prs_closed": 20,
       "prs_merged": 14,
-      "prs_open_eod": 408,
+      "prs_open_eod": 406,
       "prs_opened": 14,
       "stars_total": 11941
     },
@@ -9411,7 +9411,7 @@
       "pr_net": 7,
       "prs_closed": 5,
       "prs_merged": 2,
-      "prs_open_eod": 415,
+      "prs_open_eod": 413,
       "prs_opened": 12,
       "stars_total": 11945
     },
@@ -9423,7 +9423,7 @@
       "pr_net": 3,
       "prs_closed": 6,
       "prs_merged": 2,
-      "prs_open_eod": 418,
+      "prs_open_eod": 416,
       "prs_opened": 9,
       "stars_total": 11949
     },
@@ -9435,7 +9435,7 @@
       "pr_net": 3,
       "prs_closed": 4,
       "prs_merged": 2,
-      "prs_open_eod": 421,
+      "prs_open_eod": 419,
       "prs_opened": 7,
       "stars_total": 11946
     },
@@ -9447,7 +9447,7 @@
       "pr_net": 1,
       "prs_closed": 2,
       "prs_merged": 1,
-      "prs_open_eod": 422,
+      "prs_open_eod": 420,
       "prs_opened": 3,
       "stars_total": 11951
     },
@@ -9459,7 +9459,7 @@
       "pr_net": 6,
       "prs_closed": 7,
       "prs_merged": 3,
-      "prs_open_eod": 428,
+      "prs_open_eod": 426,
       "prs_opened": 13,
       "stars_total": 11958
     },
@@ -9471,7 +9471,7 @@
       "pr_net": 1,
       "prs_closed": 9,
       "prs_merged": 4,
-      "prs_open_eod": 429,
+      "prs_open_eod": 427,
       "prs_opened": 10,
       "stars_total": 11960
     },
@@ -9483,7 +9483,7 @@
       "pr_net": -4,
       "prs_closed": 8,
       "prs_merged": 3,
-      "prs_open_eod": 425,
+      "prs_open_eod": 423,
       "prs_opened": 4,
       "stars_total": 11962
     },
@@ -9492,11 +9492,11 @@
       "date": "2026-10-08",
       "forks_total": 1988,
       "github_contributors_total": 381,
-      "pr_net": 10,
+      "pr_net": 9,
       "prs_closed": 13,
       "prs_merged": 10,
-      "prs_open_eod": 435,
-      "prs_opened": 23,
+      "prs_open_eod": 432,
+      "prs_opened": 22,
       "stars_total": 11972
     },
     {
@@ -9507,7 +9507,7 @@
       "pr_net": 0,
       "prs_closed": 18,
       "prs_merged": 11,
-      "prs_open_eod": 435,
+      "prs_open_eod": 432,
       "prs_opened": 18,
       "stars_total": 11981
     },
@@ -9519,7 +9519,7 @@
       "pr_net": 18,
       "prs_closed": 13,
       "prs_merged": 10,
-      "prs_open_eod": 453,
+      "prs_open_eod": 450,
       "prs_opened": 31,
       "stars_total": 11983
     },
@@ -9531,7 +9531,7 @@
       "pr_net": 16,
       "prs_closed": 7,
       "prs_merged": 6,
-      "prs_open_eod": 469,
+      "prs_open_eod": 466,
       "prs_opened": 23,
       "stars_total": 11996
     },
@@ -9543,7 +9543,7 @@
       "pr_net": -6,
       "prs_closed": 12,
       "prs_merged": 6,
-      "prs_open_eod": 463,
+      "prs_open_eod": 460,
       "prs_opened": 6,
       "stars_total": 12001
     },
@@ -9555,7 +9555,7 @@
       "pr_net": 5,
       "prs_closed": 14,
       "prs_merged": 9,
-      "prs_open_eod": 468,
+      "prs_open_eod": 465,
       "prs_opened": 19,
       "stars_total": 12007
     },
@@ -9565,10 +9565,10 @@
       "forks_total": 2015,
       "github_contributors_total": 390,
       "pr_net": 0,
-      "prs_closed": 29,
-      "prs_merged": 19,
-      "prs_open_eod": 468,
-      "prs_opened": 29,
+      "prs_closed": 28,
+      "prs_merged": 18,
+      "prs_open_eod": 465,
+      "prs_opened": 28,
       "stars_total": 12037
     },
     {
@@ -9576,11 +9576,11 @@
       "date": "2026-10-15",
       "forks_total": 2029,
       "github_contributors_total": 399,
-      "pr_net": 5,
+      "pr_net": 4,
       "prs_closed": 21,
       "prs_merged": 20,
-      "prs_open_eod": 473,
-      "prs_opened": 26,
+      "prs_open_eod": 469,
+      "prs_opened": 25,
       "stars_total": 12068
     },
     {
@@ -9591,7 +9591,7 @@
       "pr_net": 15,
       "prs_closed": 8,
       "prs_merged": 6,
-      "prs_open_eod": 488,
+      "prs_open_eod": 484,
       "prs_opened": 23,
       "stars_total": 12088
     },
@@ -9603,7 +9603,7 @@
       "pr_net": 2,
       "prs_closed": 11,
       "prs_merged": 8,
-      "prs_open_eod": 490,
+      "prs_open_eod": 486,
       "prs_opened": 13,
       "stars_total": 12100
     },
@@ -9615,7 +9615,7 @@
       "pr_net": 0,
       "prs_closed": 8,
       "prs_merged": 7,
-      "prs_open_eod": 490,
+      "prs_open_eod": 486,
       "prs_opened": 8,
       "stars_total": 12105
     },
@@ -9627,7 +9627,7 @@
       "pr_net": 2,
       "prs_closed": 13,
       "prs_merged": 9,
-      "prs_open_eod": 492,
+      "prs_open_eod": 488,
       "prs_opened": 15,
       "stars_total": 12108
     },
@@ -9636,10 +9636,10 @@
       "date": "2026-10-20",
       "forks_total": 2158,
       "github_contributors_total": 406,
-      "pr_net": 7,
-      "prs_closed": 21,
-      "prs_merged": 15,
-      "prs_open_eod": 499,
+      "pr_net": 8,
+      "prs_closed": 20,
+      "prs_merged": 14,
+      "prs_open_eod": 496,
       "prs_opened": 28,
       "stars_total": 12120
     },
@@ -9648,10 +9648,10 @@
       "date": "2026-10-21",
       "forks_total": 2073,
       "github_contributors_total": 406,
-      "pr_net": -1,
-      "prs_closed": 29,
+      "pr_net": 0,
+      "prs_closed": 28,
       "prs_merged": 20,
-      "prs_open_eod": 498,
+      "prs_open_eod": 496,
       "prs_opened": 28,
       "stars_total": 12130
     },
@@ -9663,7 +9663,7 @@
       "pr_net": -25,
       "prs_closed": 41,
       "prs_merged": 32,
-      "prs_open_eod": 473,
+      "prs_open_eod": 471,
       "prs_opened": 16,
       "stars_total": 12143
     },
@@ -9675,7 +9675,7 @@
       "pr_net": 9,
       "prs_closed": 13,
       "prs_merged": 7,
-      "prs_open_eod": 482,
+      "prs_open_eod": 480,
       "prs_opened": 22,
       "stars_total": 12152
     },
@@ -9687,7 +9687,7 @@
       "pr_net": 5,
       "prs_closed": 12,
       "prs_merged": 8,
-      "prs_open_eod": 487,
+      "prs_open_eod": 485,
       "prs_opened": 17,
       "stars_total": 12156
     },
@@ -9699,7 +9699,7 @@
       "pr_net": -1,
       "prs_closed": 8,
       "prs_merged": 7,
-      "prs_open_eod": 486,
+      "prs_open_eod": 484,
       "prs_opened": 7,
       "stars_total": 12159
     },
@@ -9711,7 +9711,7 @@
       "pr_net": 8,
       "prs_closed": 11,
       "prs_merged": 6,
-      "prs_open_eod": 494,
+      "prs_open_eod": 492,
       "prs_opened": 19,
       "stars_total": 12164
     },
@@ -9723,7 +9723,7 @@
       "pr_net": 6,
       "prs_closed": 19,
       "prs_merged": 14,
-      "prs_open_eod": 500,
+      "prs_open_eod": 498,
       "prs_opened": 25,
       "stars_total": 12180
     },
@@ -9735,7 +9735,7 @@
       "pr_net": 4,
       "prs_closed": 21,
       "prs_merged": 18,
-      "prs_open_eod": 504,
+      "prs_open_eod": 502,
       "prs_opened": 25,
       "stars_total": 12185
     },
@@ -9747,7 +9747,7 @@
       "pr_net": -15,
       "prs_closed": 31,
       "prs_merged": 19,
-      "prs_open_eod": 489,
+      "prs_open_eod": 487,
       "prs_opened": 16,
       "stars_total": 12209
     },
@@ -9759,7 +9759,7 @@
       "pr_net": 8,
       "prs_closed": 11,
       "prs_merged": 11,
-      "prs_open_eod": 497,
+      "prs_open_eod": 495,
       "prs_opened": 19,
       "stars_total": 12229
     },
@@ -9771,7 +9771,7 @@
       "pr_net": -5,
       "prs_closed": 15,
       "prs_merged": 10,
-      "prs_open_eod": 492,
+      "prs_open_eod": 490,
       "prs_opened": 10,
       "stars_total": 12242
     },
@@ -9783,7 +9783,7 @@
       "pr_net": -2,
       "prs_closed": 6,
       "prs_merged": 3,
-      "prs_open_eod": 490,
+      "prs_open_eod": 488,
       "prs_opened": 4,
       "stars_total": 12251
     },
@@ -9795,7 +9795,7 @@
       "pr_net": -5,
       "prs_closed": 16,
       "prs_merged": 10,
-      "prs_open_eod": 485,
+      "prs_open_eod": 483,
       "prs_opened": 11,
       "stars_total": 12256
     },
@@ -9807,7 +9807,7 @@
       "pr_net": 1,
       "prs_closed": 10,
       "prs_merged": 8,
-      "prs_open_eod": 486,
+      "prs_open_eod": 484,
       "prs_opened": 11,
       "stars_total": 12262
     },
@@ -9819,7 +9819,7 @@
       "pr_net": -5,
       "prs_closed": 26,
       "prs_merged": 21,
-      "prs_open_eod": 481,
+      "prs_open_eod": 479,
       "prs_opened": 21,
       "stars_total": 12271
     },
@@ -9828,11 +9828,11 @@
       "date": "2026-11-05",
       "forks_total": 2128,
       "github_contributors_total": 434,
-      "pr_net": 0,
+      "pr_net": -1,
       "prs_closed": 28,
       "prs_merged": 20,
-      "prs_open_eod": 481,
-      "prs_opened": 28,
+      "prs_open_eod": 478,
+      "prs_opened": 27,
       "stars_total": 12278
     },
     {
@@ -9843,7 +9843,7 @@
       "pr_net": 9,
       "prs_closed": 17,
       "prs_merged": 13,
-      "prs_open_eod": 490,
+      "prs_open_eod": 487,
       "prs_opened": 26,
       "stars_total": 12289
     },
@@ -9855,7 +9855,7 @@
       "pr_net": 4,
       "prs_closed": 19,
       "prs_merged": 6,
-      "prs_open_eod": 494,
+      "prs_open_eod": 491,
       "prs_opened": 23,
       "stars_total": 12301
     },
@@ -9867,7 +9867,7 @@
       "pr_net": 5,
       "prs_closed": 9,
       "prs_merged": 8,
-      "prs_open_eod": 499,
+      "prs_open_eod": 496,
       "prs_opened": 14,
       "stars_total": 12307
     },
@@ -9879,7 +9879,7 @@
       "pr_net": 1,
       "prs_closed": 12,
       "prs_merged": 6,
-      "prs_open_eod": 500,
+      "prs_open_eod": 497,
       "prs_opened": 13,
       "stars_total": 12310
     },
@@ -9891,7 +9891,7 @@
       "pr_net": 1,
       "prs_closed": 22,
       "prs_merged": 19,
-      "prs_open_eod": 501,
+      "prs_open_eod": 498,
       "prs_opened": 23,
       "stars_total": 12320
     },
@@ -9903,7 +9903,7 @@
       "pr_net": 1,
       "prs_closed": 30,
       "prs_merged": 26,
-      "prs_open_eod": 502,
+      "prs_open_eod": 499,
       "prs_opened": 31,
       "stars_total": 12332
     },
@@ -9915,7 +9915,7 @@
       "pr_net": -25,
       "prs_closed": 42,
       "prs_merged": 18,
-      "prs_open_eod": 477,
+      "prs_open_eod": 474,
       "prs_opened": 17,
       "stars_total": 12344
     },
@@ -9924,11 +9924,11 @@
       "date": "2026-11-13",
       "forks_total": 2161,
       "github_contributors_total": 448,
-      "pr_net": -4,
+      "pr_net": -5,
       "prs_closed": 19,
       "prs_merged": 14,
-      "prs_open_eod": 473,
-      "prs_opened": 15,
+      "prs_open_eod": 469,
+      "prs_opened": 14,
       "stars_total": 12350
     },
     {
@@ -9939,7 +9939,7 @@
       "pr_net": 3,
       "prs_closed": 10,
       "prs_merged": 7,
-      "prs_open_eod": 476,
+      "prs_open_eod": 472,
       "prs_opened": 13,
       "stars_total": 12359
     },
@@ -9951,7 +9951,7 @@
       "pr_net": 7,
       "prs_closed": 2,
       "prs_merged": 0,
-      "prs_open_eod": 483,
+      "prs_open_eod": 479,
       "prs_opened": 9,
       "stars_total": 12363
     },
@@ -9963,7 +9963,7 @@
       "pr_net": 8,
       "prs_closed": 10,
       "prs_merged": 6,
-      "prs_open_eod": 491,
+      "prs_open_eod": 487,
       "prs_opened": 18,
       "stars_total": 12368
     },
@@ -9972,11 +9972,11 @@
       "date": "2026-11-17",
       "forks_total": 2168,
       "github_contributors_total": 450,
-      "pr_net": 5,
+      "pr_net": 6,
       "prs_closed": 10,
       "prs_merged": 8,
-      "prs_open_eod": 496,
-      "prs_opened": 15,
+      "prs_open_eod": 493,
+      "prs_opened": 16,
       "stars_total": 12376
     },
     {
@@ -9984,11 +9984,11 @@
       "date": "2026-11-18",
       "forks_total": 2169,
       "github_contributors_total": 453,
-      "pr_net": 9,
+      "pr_net": 10,
       "prs_closed": 15,
       "prs_merged": 14,
-      "prs_open_eod": 505,
-      "prs_opened": 24,
+      "prs_open_eod": 503,
+      "prs_opened": 25,
       "stars_total": 12380
     },
     {
@@ -9996,11 +9996,11 @@
       "date": "2026-11-19",
       "forks_total": 2172,
       "github_contributors_total": 453,
-      "pr_net": -5,
+      "pr_net": -3,
       "prs_closed": 27,
       "prs_merged": 18,
       "prs_open_eod": 500,
-      "prs_opened": 22,
+      "prs_opened": 24,
       "stars_total": 12390
     },
     {
@@ -10008,12 +10008,24 @@
       "date": "2026-11-20",
       "forks_total": 2175,
       "github_contributors_total": 454,
-      "pr_net": 1,
-      "prs_closed": 1,
-      "prs_merged": 1,
-      "prs_open_eod": 501,
-      "prs_opened": 2,
+      "pr_net": 3,
+      "prs_closed": 6,
+      "prs_merged": 5,
+      "prs_open_eod": 503,
+      "prs_opened": 9,
       "stars_total": 12395
+    },
+    {
+      "contributors_total": 426,
+      "date": "2026-11-21",
+      "forks_total": 2171,
+      "github_contributors_total": 454,
+      "pr_net": 1,
+      "prs_closed": 4,
+      "prs_merged": 4,
+      "prs_open_eod": 504,
+      "prs_opened": 5,
+      "stars_total": 12401
     }
   ],
   "events": {
@@ -25649,7 +25661,7 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-20T01:47:25Z",
         "created_at": "2026-08-17T16:27:41Z",
         "merged_at": null
       },
@@ -27599,11 +27611,6 @@
         "merged_at": null
       },
       {
-        "closed_at": "2026-09-23T14:14:11Z",
-        "created_at": "2026-09-18T03:34:46Z",
-        "merged_at": "2026-09-23T14:14:11Z"
-      },
-      {
         "closed_at": null,
         "created_at": "2026-09-18T03:48:06Z",
         "merged_at": null
@@ -27637,11 +27644,6 @@
         "closed_at": "2026-10-14T03:34:23Z",
         "created_at": "2026-09-18T08:11:41Z",
         "merged_at": null
-      },
-      {
-        "closed_at": "2026-10-14T00:30:04Z",
-        "created_at": "2026-09-18T08:35:25Z",
-        "merged_at": "2026-10-14T00:30:04Z"
       },
       {
         "closed_at": "2026-10-15T05:04:12Z",
@@ -27774,23 +27776,8 @@
         "merged_at": "2026-09-29T01:04:54Z"
       },
       {
-        "closed_at": "2026-10-21T00:52:19Z",
-        "created_at": "2026-09-19T05:36:08Z",
-        "merged_at": null
-      },
-      {
-        "closed_at": "2026-09-29T02:09:02Z",
-        "created_at": "2026-09-19T08:32:41Z",
-        "merged_at": null
-      },
-      {
         "closed_at": null,
         "created_at": "2026-09-19T10:26:09Z",
-        "merged_at": null
-      },
-      {
-        "closed_at": "2026-09-29T02:09:25Z",
-        "created_at": "2026-09-19T11:38:47Z",
         "merged_at": null
       },
       {
@@ -28699,11 +28686,6 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
-        "created_at": "2026-10-07T17:08:28Z",
-        "merged_at": null
-      },
-      {
         "closed_at": "2026-10-08T01:25:58Z",
         "created_at": "2026-10-07T17:56:18Z",
         "merged_at": "2026-10-08T01:25:58Z"
@@ -29414,11 +29396,6 @@
         "merged_at": "2026-10-14T11:07:03Z"
       },
       {
-        "closed_at": "2026-10-20T03:54:34Z",
-        "created_at": "2026-10-14T12:44:18Z",
-        "merged_at": "2026-10-20T03:54:34Z"
-      },
-      {
         "closed_at": "2026-10-15T04:31:35Z",
         "created_at": "2026-10-14T13:25:37Z",
         "merged_at": "2026-10-15T04:31:35Z"
@@ -29442,11 +29419,6 @@
         "closed_at": "2026-10-29T05:56:52Z",
         "created_at": "2026-10-14T15:50:22Z",
         "merged_at": "2026-10-29T05:56:52Z"
-      },
-      {
-        "closed_at": null,
-        "created_at": "2026-10-14T16:51:12Z",
-        "merged_at": null
       },
       {
         "closed_at": "2026-10-15T22:48:04Z",
@@ -29844,9 +29816,9 @@
         "merged_at": "2026-10-25T02:15:44Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-20T13:53:09Z",
         "created_at": "2026-10-19T08:16:35Z",
-        "merged_at": null
+        "merged_at": "2026-11-20T13:53:09Z"
       },
       {
         "closed_at": "2026-10-21T06:29:28Z",
@@ -30704,9 +30676,9 @@
         "merged_at": "2026-10-28T02:37:04Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-20T19:48:51Z",
         "created_at": "2026-10-27T22:24:53Z",
-        "merged_at": null
+        "merged_at": "2026-11-20T19:48:51Z"
       },
       {
         "closed_at": "2026-11-11T18:23:51Z",
@@ -31347,11 +31319,6 @@
         "closed_at": "2026-11-05T10:25:19Z",
         "created_at": "2026-11-05T05:52:29Z",
         "merged_at": "2026-11-05T10:25:19Z"
-      },
-      {
-        "closed_at": null,
-        "created_at": "2026-11-05T06:48:01Z",
-        "merged_at": null
       },
       {
         "closed_at": null,
@@ -32064,9 +32031,9 @@
         "merged_at": "2026-11-12T09:58:02Z"
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-20T17:45:03Z",
         "created_at": "2026-11-11T18:52:25Z",
-        "merged_at": null
+        "merged_at": "2026-11-20T17:45:03Z"
       },
       {
         "closed_at": null,
@@ -32192,11 +32159,6 @@
         "closed_at": "2026-11-13T07:54:02Z",
         "created_at": "2026-11-13T06:54:07Z",
         "merged_at": "2026-11-13T07:54:02Z"
-      },
-      {
-        "closed_at": null,
-        "created_at": "2026-11-13T07:19:29Z",
-        "merged_at": null
       },
       {
         "closed_at": "2026-11-14T03:28:02Z",
@@ -32419,6 +32381,11 @@
         "merged_at": "2026-11-19T02:42:12Z"
       },
       {
+        "closed_at": null,
+        "created_at": "2026-11-16T18:40:35Z",
+        "merged_at": null
+      },
+      {
         "closed_at": "2026-11-18T06:37:42Z",
         "created_at": "2026-11-16T22:43:49Z",
         "merged_at": null
@@ -32544,9 +32511,9 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-20T01:07:02Z",
         "created_at": "2026-11-18T02:41:55Z",
-        "merged_at": null
+        "merged_at": "2026-11-20T01:07:02Z"
       },
       {
         "closed_at": null,
@@ -32590,6 +32557,11 @@
       },
       {
         "closed_at": null,
+        "created_at": "2026-11-18T10:19:50Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
         "created_at": "2026-11-18T12:29:38Z",
         "merged_at": null
       },
@@ -32624,9 +32596,9 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-20T01:18:49Z",
         "created_at": "2026-11-19T01:15:23Z",
-        "merged_at": null
+        "merged_at": "2026-11-20T01:18:49Z"
       },
       {
         "closed_at": null,
@@ -32665,6 +32637,11 @@
       },
       {
         "closed_at": null,
+        "created_at": "2026-11-19T06:00:10Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
         "created_at": "2026-11-19T08:02:17Z",
         "merged_at": null
       },
@@ -32679,9 +32656,9 @@
         "merged_at": null
       },
       {
-        "closed_at": null,
+        "closed_at": "2026-11-20T02:42:07Z",
         "created_at": "2026-11-19T09:19:12Z",
-        "merged_at": null
+        "merged_at": "2026-11-20T02:42:07Z"
       },
       {
         "closed_at": null,
@@ -32719,6 +32696,16 @@
         "merged_at": null
       },
       {
+        "closed_at": null,
+        "created_at": "2026-11-19T15:15:01Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-19T19:31:29Z",
+        "merged_at": null
+      },
+      {
         "closed_at": "2026-11-19T20:39:40Z",
         "created_at": "2026-11-19T19:39:19Z",
         "merged_at": "2026-11-19T20:39:40Z"
@@ -32727,19 +32714,74 @@
         "closed_at": null,
         "created_at": "2026-11-19T20:08:34Z",
         "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-19T20:08:54Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-20T02:49:31Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-20T03:37:27Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-20T04:40:38Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-20T05:02:50Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-20T06:14:28Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-20T16:12:23Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": "2026-11-20T21:11:39Z",
+        "created_at": "2026-11-20T17:10:56Z",
+        "merged_at": "2026-11-20T21:11:39Z"
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-20T17:26:31Z",
+        "merged_at": null
+      },
+      {
+        "closed_at": "2026-11-20T23:48:11Z",
+        "created_at": "2026-11-20T20:58:03Z",
+        "merged_at": "2026-11-20T23:48:11Z"
+      },
+      {
+        "closed_at": null,
+        "created_at": "2026-11-20T22:10:22Z",
+        "merged_at": null
       }
     ]
   },
   "excludes_drafts": true,
-  "generated_at": "2026-11-20T00:39:31.171955Z",
+  "generated_at": "2026-11-21T00:00:40.360046Z",
   "repository": "LMCache/LMCache",
   "summary": {
     "current_contributors": 454,
-    "current_forks": 2175,
-    "current_open_prs": 501,
-    "current_stars": 12395,
+    "current_forks": 2171,
+    "current_open_prs": 504,
+    "current_stars": 12401,
     "estimated_contributors": 426,
-    "untracked_forks": 303,
+    "untracked_forks": 299,
     "visible_forks_tracked": 1872
   },
   "timezone": "Asia/Shanghai"
